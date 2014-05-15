@@ -66,6 +66,8 @@ public class Bluetooth {
 	// Member object for the chat services
 	private BluetoothService mChatService = null;
 	private Activity context;
+	
+	byte send[] = null;
 
 	public void onCreate(Activity context) {
 		if (D)
@@ -83,7 +85,7 @@ public class Bluetooth {
 			context.finish();
 			return;
 		}
-		
+
 		Intent serverIntent = new Intent(context, DeviceListActivity.class);
 		context.startActivityForResult(serverIntent,
 				REQUEST_CONNECT_DEVICE_SECURE);
@@ -127,34 +129,34 @@ public class Bluetooth {
 	}
 
 	private void setupChat() {
-		 Log.d(TAG, "setupChat()");
-		
-//		 // Initialize the array adapter for the conversation thread
-//		 mConversationArrayAdapter = new ArrayAdapter<String>(context,
-//		 R.layout.message);
-//		 mConversationView = (ListView) findViewById(R.id.in);
-//		 mConversationView.setAdapter(mConversationArrayAdapter);
-		
-//		 // Initialize the compose field with a listener for the return key
-//		 mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-//		 mOutEditText.setOnEditorActionListener(mWriteListener);
-		
-//		 // Initialize the send button with a listener that for click events
-//		 mSendButton = (Button) findViewById(R.id.button_send);
-//		 mSendButton.setOnClickListener(new OnClickListener() {
-//		 public void onClick(View v) {
-//		 // Send a message using content of the edit text widget
-//		 TextView view = (TextView) findViewById(R.id.edit_text_out);
-//		 String message = view.getText().toString();
-//		 sendMessage(message);
-//		 }
-//		 });
-		
-		 // Initialize the BluetoothChatService to perform bluetooth connections
-		 mChatService = new BluetoothService(context, mHandler);
-		
-		 // Initialize the buffer for outgoing messages
-		 mOutStringBuffer = new StringBuffer("");
+		Log.d(TAG, "setupChat()");
+
+		// // Initialize the array adapter for the conversation thread
+		// mConversationArrayAdapter = new ArrayAdapter<String>(context,
+		// R.layout.message);
+		// mConversationView = (ListView) findViewById(R.id.in);
+		// mConversationView.setAdapter(mConversationArrayAdapter);
+
+		// // Initialize the compose field with a listener for the return key
+		// mOutEditText = (EditText) findViewById(R.id.edit_text_out);
+		// mOutEditText.setOnEditorActionListener(mWriteListener);
+
+		// // Initialize the send button with a listener that for click events
+		// mSendButton = (Button) findViewById(R.id.button_send);
+		// mSendButton.setOnClickListener(new OnClickListener() {
+		// public void onClick(View v) {
+		// // Send a message using content of the edit text widget
+		// TextView view = (TextView) findViewById(R.id.edit_text_out);
+		// String message = view.getText().toString();
+		// sendMessage(message);
+		// }
+		// });
+
+		// Initialize the BluetoothChatService to perform bluetooth connections
+		mChatService = new BluetoothService(context, mHandler);
+
+		// Initialize the buffer for outgoing messages
+		mOutStringBuffer = new StringBuffer("");
 	}
 
 	public void onDestroy() {
@@ -194,14 +196,18 @@ public class Bluetooth {
 		// Check that there's actually something to send
 		if (message.length > 0) {
 			// Get the message bytes and tell the BluetoothChatService to write
-			byte[] send = null;
 			
-			for(int i = 0; i < 10; i++)
-				for(int j = 0; j < 10; j++)
-					send[i* 10 + j] = (byte) message[i][j]; 
-			
+			send = new byte[100];
+
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					send[i * 10 + j] = (byte) message[i][j];
+					
+				}
+			}
+
 			mChatService.write(send);
-			
+
 			Toast.makeText(context, "Message sent!", Toast.LENGTH_SHORT).show();
 
 			// Reset out string buffer to zero and clear the edit text field
@@ -210,21 +216,22 @@ public class Bluetooth {
 	}
 
 	// The action listener for the EditText widget, to listen for the return key
-//	private TextView.OnEditorActionListener mWriteListener = new TextView.OnEditorActionListener() {
-//		public boolean onEditorAction(TextView view, int actionId,
-//				KeyEvent event) {
-//			// If the action is a key-up event on the return key, send the
-//			// message
-//			if (actionId == EditorInfo.IME_NULL
-//					&& event.getAction() == KeyEvent.ACTION_UP) {
-//				String message = view.getText().toString();
-//				sendMessage(message);
-//			}
-//			if (D)
-//				Log.i(TAG, "END onEditorAction");
-//			return true;
-//		}
-//	};
+	// private TextView.OnEditorActionListener mWriteListener = new
+	// TextView.OnEditorActionListener() {
+	// public boolean onEditorAction(TextView view, int actionId,
+	// KeyEvent event) {
+	// // If the action is a key-up event on the return key, send the
+	// // message
+	// if (actionId == EditorInfo.IME_NULL
+	// && event.getAction() == KeyEvent.ACTION_UP) {
+	// String message = view.getText().toString();
+	// sendMessage(message);
+	// }
+	// if (D)
+	// Log.i(TAG, "END onEditorAction");
+	// return true;
+	// }
+	// };
 
 	// private final void setStatus(int resId) {
 	// final ActionBar actionBar = getActionBar();
@@ -248,7 +255,7 @@ public class Bluetooth {
 				case BluetoothService.STATE_CONNECTED:
 					// setStatus(getString(R.string.title_connected_to,
 					// mConnectedDeviceName));
-					//mConversationArrayAdapter.clear();
+					// mConversationArrayAdapter.clear();
 					break;
 				case BluetoothService.STATE_CONNECTING:
 					// setStatus(R.string.title_connecting);
@@ -264,15 +271,15 @@ public class Bluetooth {
 				// construct a string from the buffer
 				String writeMessage = new String(writeBuf);
 				System.out.println("SENT: " + writeMessage);
-				//mConversationArrayAdapter.add("Me:  " + writeMessage);
+				// mConversationArrayAdapter.add("Me:  " + writeMessage);
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
 				String readMessage = new String(readBuf, 0, msg.arg1);
 				System.out.println("GET: " + readMessage);
-				//mConversationArrayAdapter.add(mConnectedDeviceName + ":  "
-				//		+ readMessage);
+				// mConversationArrayAdapter.add(mConnectedDeviceName + ":  "
+				// + readMessage);
 				break;
 			case MESSAGE_DEVICE_NAME:
 				// save the connected device's name

@@ -40,6 +40,7 @@ public class SingleGameView extends View {
 	private int sumshoot = 0;
 	private int points = 0;
 	private int s = 0;
+	byte[] kar;
 
 	public SingleGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -62,12 +63,6 @@ public class SingleGameView extends View {
 
 		player = new Player(this.getContext());
 
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				System.out.print(enemyGameField.gameField[i][j] + " ");
-			}
-			System.out.println();
-		}
 	}
 
 	private void createShip() {
@@ -122,6 +117,7 @@ public class SingleGameView extends View {
 						ocean.getHeight() * i, null);
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int action = event.getAction();
@@ -297,8 +293,7 @@ public class SingleGameView extends View {
 			if (userGameField.gameField[x][y] == 6
 					|| userGameField.gameField[x][y] == 7) {
 				lo = true;
-			}
-			else{
+			} else {
 				lo = false;
 			}
 		}
@@ -311,15 +306,10 @@ public class SingleGameView extends View {
 				&& userGameField.gameField[x][y] != 6
 				&& userGameField.gameField[x][y] != 7) {
 			userGameField.gameField[x][y] = 7;
-			System.out.println("faszomat bazd meg AI");
+
 			ait++;
 		}
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				System.out.print(userGameField.gameField[i][j] + " ");
-			}
-			System.out.println();
-		}
+
 	}
 
 	void AIPlace() {
