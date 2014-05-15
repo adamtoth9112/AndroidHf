@@ -197,7 +197,7 @@ public class Bluetooth {
 			byte[] send = message.getBytes();
 			mChatService.write(send);
 			
-			Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, "Message sent!", Toast.LENGTH_SHORT).show();
 
 			// Reset out string buffer to zero and clear the edit text field
 			mOutStringBuffer.setLength(0);
@@ -258,13 +258,14 @@ public class Bluetooth {
 				byte[] writeBuf = (byte[]) msg.obj;
 				// construct a string from the buffer
 				String writeMessage = new String(writeBuf);
+				System.out.println("SENT: " + writeMessage);
 				//mConversationArrayAdapter.add("Me:  " + writeMessage);
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
 				String readMessage = new String(readBuf, 0, msg.arg1);
-				Toast.makeText(context.getApplicationContext(), readMessage, Toast.LENGTH_LONG).show();
+				System.out.println("GET: " + readMessage);
 				//mConversationArrayAdapter.add(mConnectedDeviceName + ":  "
 				//		+ readMessage);
 				break;
@@ -304,7 +305,6 @@ public class Bluetooth {
 			// When the request to enable Bluetooth returns
 			if (resultCode == Activity.RESULT_OK) {
 				// Bluetooth is now enabled, so set up a chat session
-				System.out.println("BLUETOOTH ENABLED");
 				setupChat();
 			} else {
 				// User did not enable Bluetooth or an error occurred

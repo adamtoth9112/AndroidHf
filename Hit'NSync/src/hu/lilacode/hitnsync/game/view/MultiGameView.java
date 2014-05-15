@@ -97,7 +97,7 @@ public class MultiGameView extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		
-		GameActivity.bluetooth.sendMessage("0");
+		GameActivity.bluetooth.sendMessage("asd");
 
 		int action = event.getAction();
 		if (action == MotionEvent.ACTION_DOWN) {
