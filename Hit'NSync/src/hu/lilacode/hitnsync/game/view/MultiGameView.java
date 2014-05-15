@@ -98,7 +98,6 @@ public class MultiGameView extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 		
 		GameActivity.bluetooth.sendMessage(userGameField.gameField);
-
 		int action = event.getAction();
 		if (action == MotionEvent.ACTION_DOWN) {
 			float w = (getWidth() * 0.47f / 10);

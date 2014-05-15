@@ -11,6 +11,14 @@
     <string name="Ok">Ok</string>
     <string name="Name">Neved:</string>
     <string name="action_settings">Settings</string>
+    <string name="kezdes">Üdvözlünk a játékban! Reméljük, jól fogsz szórakozni, egy retro torpedó játékban</string>
+    <string name="hajo_lerakas">A fekete játékmező a saját táblád. Lerakdni úgy tudod, ha rákattintasz egy mezőre</string>
+    <string name="hajo_forgatas">A hajódat úgy tudod elforgatni, ha mégegyszer rákattintasz ugyanarra a mezőre, amire leraktad</string>
+    <string name="csata">A csata alatt felváltva lőhettek egymás hajóira, a piros játékmezőn. A célpont a kijelölt mező</string>
+    <string name="talalat">A találatot a játékmezőkön piros színnel, a hibás lövéseket fekete körrel jelüljük</string>
+    <string name="cel">A cél: minél előbb megsemmisíteni az ellenfél hajóit</string>
+    <string name="jatekmod">A játékot játszathot barátoddal BlueTooth segítségével vagy gépi ellenfél ellen</string>
+    
 
     <!-- BluetoothChat -->
     <string name="send">Send</string>
