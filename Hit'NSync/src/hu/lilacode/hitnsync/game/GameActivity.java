@@ -3,6 +3,7 @@ package hu.lilacode.hitnsync.game;
 import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.service.network.Bluetooth;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,5 +44,10 @@ public class GameActivity extends Activity {
 		super.onDestroy();
 		
 		bluetooth.onDestroy();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		bluetooth.onActivityResult(requestCode, resultCode, data);
 	}
 }

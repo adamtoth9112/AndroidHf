@@ -243,7 +243,7 @@ public class Bluetooth {
 				case BluetoothService.STATE_CONNECTED:
 					// setStatus(getString(R.string.title_connected_to,
 					// mConnectedDeviceName));
-					mConversationArrayAdapter.clear();
+					//mConversationArrayAdapter.clear();
 					break;
 				case BluetoothService.STATE_CONNECTING:
 					// setStatus(R.string.title_connecting);
@@ -258,14 +258,14 @@ public class Bluetooth {
 				byte[] writeBuf = (byte[]) msg.obj;
 				// construct a string from the buffer
 				String writeMessage = new String(writeBuf);
-				mConversationArrayAdapter.add("Me:  " + writeMessage);
+				//mConversationArrayAdapter.add("Me:  " + writeMessage);
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
 				String readMessage = new String(readBuf, 0, msg.arg1);
-				mConversationArrayAdapter.add(mConnectedDeviceName + ":  "
-						+ readMessage);
+				//mConversationArrayAdapter.add(mConnectedDeviceName + ":  "
+				//		+ readMessage);
 				break;
 			case MESSAGE_DEVICE_NAME:
 				// save the connected device's name
