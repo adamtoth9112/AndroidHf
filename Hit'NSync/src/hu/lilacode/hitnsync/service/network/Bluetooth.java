@@ -183,7 +183,7 @@ public class Bluetooth {
 	 * @param message
 	 *            A string of text to send.
 	 */
-	public void sendMessage(String message) {
+	public void sendMessage(int[][] message) {
 		// Check that we're actually connected before trying anything
 		if (mChatService.getState() != BluetoothService.STATE_CONNECTED) {
 			Toast.makeText(context, R.string.not_connected, Toast.LENGTH_SHORT)
@@ -192,9 +192,14 @@ public class Bluetooth {
 		}
 
 		// Check that there's actually something to send
-		if (message.length() > 0) {
+		if (message.length > 0) {
 			// Get the message bytes and tell the BluetoothChatService to write
-			byte[] send = message.getBytes();
+			byte[] send = null;
+			
+			for(int i = 0; i < 10; i++)
+				for(int j = 0; j < 10; j++)
+					send[i* 10 + j] = (byte) message[i][j]; 
+			
 			mChatService.write(send);
 			
 			Toast.makeText(context, "Message sent!", Toast.LENGTH_SHORT).show();
@@ -205,21 +210,21 @@ public class Bluetooth {
 	}
 
 	// The action listener for the EditText widget, to listen for the return key
-	private TextView.OnEditorActionListener mWriteListener = new TextView.OnEditorActionListener() {
-		public boolean onEditorAction(TextView view, int actionId,
-				KeyEvent event) {
-			// If the action is a key-up event on the return key, send the
-			// message
-			if (actionId == EditorInfo.IME_NULL
-					&& event.getAction() == KeyEvent.ACTION_UP) {
-				String message = view.getText().toString();
-				sendMessage(message);
-			}
-			if (D)
-				Log.i(TAG, "END onEditorAction");
-			return true;
-		}
-	};
+//	private TextView.OnEditorActionListener mWriteListener = new TextView.OnEditorActionListener() {
+//		public boolean onEditorAction(TextView view, int actionId,
+//				KeyEvent event) {
+//			// If the action is a key-up event on the return key, send the
+//			// message
+//			if (actionId == EditorInfo.IME_NULL
+//					&& event.getAction() == KeyEvent.ACTION_UP) {
+//				String message = view.getText().toString();
+//				sendMessage(message);
+//			}
+//			if (D)
+//				Log.i(TAG, "END onEditorAction");
+//			return true;
+//		}
+//	};
 
 	// private final void setStatus(int resId) {
 	// final ActionBar actionBar = getActionBar();
