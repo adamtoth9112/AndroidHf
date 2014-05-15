@@ -20,7 +20,6 @@ import hu.lilacode.hitnsync.R;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -81,14 +80,13 @@ public class Bluetooth {
 		if (mBluetoothAdapter == null) {
 			Toast.makeText(context, "Bluetooth is not available",
 					Toast.LENGTH_LONG).show();
-			((Activity) context).finish(); // EZ LEHET BAJ
+			context.finish();
 			return;
 		}
-		System.out.println("RCDS" + REQUEST_CONNECT_DEVICE_SECURE);
+		
 		Intent serverIntent = new Intent(context, DeviceListActivity.class);
-		((Activity) context).startActivityForResult(serverIntent,
+		context.startActivityForResult(serverIntent,
 				REQUEST_CONNECT_DEVICE_SECURE);
-		System.out.println("RCDS" + REQUEST_CONNECT_DEVICE_SECURE);
 
 		// ensureDiscoverable();
 	}
@@ -102,7 +100,7 @@ public class Bluetooth {
 		if (!mBluetoothAdapter.isEnabled()) {
 			Intent enableIntent = new Intent(
 					BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			context.startActivity(enableIntent); // EZ LEHET BAJ
+			context.startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
 			// Otherwise, setup the chat session
 		} else {
 			if (mChatService == null)
@@ -305,13 +303,14 @@ public class Bluetooth {
 			// When the request to enable Bluetooth returns
 			if (resultCode == Activity.RESULT_OK) {
 				// Bluetooth is now enabled, so set up a chat session
+				System.out.println("BLUETOOTH ENABLED");
 				setupChat();
 			} else {
 				// User did not enable Bluetooth or an error occurred
 				Log.d(TAG, "BT not enabled");
 				Toast.makeText(context, R.string.bt_not_enabled_leaving,
 						Toast.LENGTH_SHORT).show();
-				((Activity) context).finish(); // EZ LEHET BAJ
+				context.finish();
 			}
 		}
 	}

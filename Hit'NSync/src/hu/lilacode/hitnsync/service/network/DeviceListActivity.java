@@ -52,10 +52,13 @@ public class DeviceListActivity extends Activity {
 
     // Return Intent extra
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
+    
+    // A set of currently paired devices
+    private static Set<BluetoothDevice> pairedDevices;
 
     // Member fields
     private BluetoothAdapter mBtAdapter;
-    private ArrayAdapter<String> mPairedDevicesArrayAdapter;
+    private static ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
 
     @Override
@@ -118,6 +121,7 @@ public class DeviceListActivity extends Activity {
             mPairedDevicesArrayAdapter.add(noDevices);
         }
     }
+    
 
     @Override
     protected void onDestroy() {
