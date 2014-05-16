@@ -116,8 +116,6 @@ public class SingleGameView extends View {
 				canvas.drawBitmap(ocean, ocean.getWidth() * j,
 						ocean.getHeight() * i, null);
 	}
-
-	@SuppressWarnings("null")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int action = event.getAction();

@@ -7,6 +7,8 @@ import android.graphics.Paint.Style;
 import android.view.View;
 
 public class EnemyGameField extends GameField {
+	
+	public static int[][] gameField;
 
 	public EnemyGameField(View view) {
 		this.view = view;
@@ -64,11 +66,11 @@ public class EnemyGameField extends GameField {
 		}
 	}
 	
-	public void copyField(GameField gm){
+	/*public void copyField(GameField gm){
 		for (int i = 0; i < 10; i++){
 			for (int j = 0; j < 10; j++){
 				this.gameField[i][j] = gm.gameField[i][j];
 			}
 		}
-	}
+	}*/
 }

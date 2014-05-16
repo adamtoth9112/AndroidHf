@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.view.View;
 
 public abstract class GameField {
-	public int[][] gameField;
+	
 	protected View view;
 	protected Paint paintLine;
 	

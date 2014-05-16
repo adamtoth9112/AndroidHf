@@ -12,6 +12,7 @@ import android.graphics.Paint.Style;
 import android.view.View;
 
 public class PlayerGameField extends GameField {
+	public static int[][] gameField;
 
 	public PlayerGameField(View view) {
 		this.view = view;

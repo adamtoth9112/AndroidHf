@@ -17,6 +17,8 @@
 package hu.lilacode.hitnsync.service.network;
 
 import hu.lilacode.hitnsync.R;
+import hu.lilacode.hitnsync.game.field.EnemyGameField;
+import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -66,7 +68,7 @@ public class Bluetooth {
 	// Member object for the chat services
 	private BluetoothService mChatService = null;
 	private Activity context;
-	
+
 	byte send[] = null;
 
 	public void onCreate(Activity context) {
@@ -196,13 +198,13 @@ public class Bluetooth {
 		// Check that there's actually something to send
 		if (message.length > 0) {
 			// Get the message bytes and tell the BluetoothChatService to write
-			
+
 			send = new byte[100];
 
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					send[i * 10 + j] = (byte) message[i][j];
-					
+					send[i * 10 + j] = (byte) PlayerGameField.gameField[i][j];
+
 				}
 			}
 
@@ -269,15 +271,34 @@ public class Bluetooth {
 			case MESSAGE_WRITE:
 				byte[] writeBuf = (byte[]) msg.obj;
 				// construct a string from the buffer
-				String writeMessage = new String(writeBuf);
-				System.out.println("SENT: " + writeMessage);
+
+				// String writeMessage = new String(writeBuf);
+
+				for (int i = 0; i < 10; i++) {
+					for (int j = 0; j < 10; j++) {
+						EnemyGameField.gameField[i][j] = (int) writeBuf[i * 10
+								+ j];
+						System.out.println("GET: " + writeBuf[i * 10 + j]);
+					}
+				}
+
+				// ITT KELL TESZTELIN ADAT ÁTADÁST
+
+				// System.out.println("SENT: " + writeMessage);
 				// mConversationArrayAdapter.add("Me:  " + writeMessage);
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
-				String readMessage = new String(readBuf, 0, msg.arg1);
-				System.out.println("GET: " + readMessage);
+				// String readMessage = new String(readBuf, 0, msg.arg1);
+				for (int i = 0; i < 10; i++) {
+					for (int j = 0; j < 10; j++) {
+						EnemyGameField.gameField[i][j] = (int) readBuf[i * 10
+								+ j];
+						System.out.println("GET: " + readBuf[i * 10 + j]);
+					}
+				}
+
 				// mConversationArrayAdapter.add(mConnectedDeviceName + ":  "
 				// + readMessage);
 				break;
