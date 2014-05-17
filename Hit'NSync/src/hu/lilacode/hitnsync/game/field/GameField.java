@@ -13,23 +13,15 @@ public abstract class GameField {
 	protected View view;
 	protected Paint paintLine;
 	
-	public void drawField(Canvas canvas){
-		
-	}
+	public  void drawField(Canvas canvas){}
 	
-	public void drawShot(Canvas canvas){
-		
-	}
+	public  void drawShot(Canvas canvas){}
 	
-	public boolean isPlaceEmpty(int len, float sx, float sy, Direction dir){
+	public  boolean isPlaceEmpty(int len, float sx, float sy, Direction dir){
 		return false;
 	}
 	
-	public void updateField(ArrayList<Ship> ships){
-		
-	}
+	public  void updateField(ArrayList<Ship> ships){}
 	
-	public void copyField(GameField gf){
-		
-	}
+	public  void copyField(GameField gf){}
 }

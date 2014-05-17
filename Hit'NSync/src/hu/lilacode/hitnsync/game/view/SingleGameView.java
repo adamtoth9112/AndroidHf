@@ -82,9 +82,11 @@ public class SingleGameView extends View {
             start = false;
             invalidate();
 		}
-		else
+		else {
+			enemyGameField.initField();
+			userGameField.initField();
 			AIPlace();
-
+		}
 		player = new Player(this.getContext());
 	}
 

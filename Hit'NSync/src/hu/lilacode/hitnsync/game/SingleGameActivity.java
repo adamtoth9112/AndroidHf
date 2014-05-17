@@ -35,7 +35,6 @@ public class SingleGameActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_game_single);
 		gameMusic = new GameMusic();
 
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
@@ -43,6 +42,9 @@ public class SingleGameActivity extends Activity {
 		if (prefs.getBoolean(STATE, false)) {
 			doDialog(true);
 		}
+		
+
+		setContentView(R.layout.activity_game_single);
 	}
 
 	@Override
@@ -101,6 +103,9 @@ public class SingleGameActivity extends Activity {
 			public void onClick(View v) {
 				if (load) {
 					dialogbox.dismiss();
+					EnemyGameField.initField();
+					PlayerGameField.initField();
+					setPrefState(false);
 				} else {
 					dialogbox.dismiss();
 					setPrefState(false);

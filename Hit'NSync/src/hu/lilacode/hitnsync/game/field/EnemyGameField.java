@@ -7,18 +7,19 @@ import android.graphics.Paint.Style;
 import android.view.View;
 
 public class EnemyGameField extends GameField {
-	
+
 	public static int[][] gameField;
 
 	public EnemyGameField(View view) {
 		this.view = view;
-		gameField = new int[10][10];
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				gameField[i][j] = 0;
+		if (gameField == null) {
+			gameField = new int[10][10];
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					gameField[i][j] = 0;
+				}
 			}
 		}
-
 		paintLine = new Paint();
 		paintLine.setStyle(Style.STROKE);
 		paintLine.setStrokeWidth(5);
@@ -32,26 +33,26 @@ public class EnemyGameField extends GameField {
 		canvas.drawRect(view.getWidth() * 0.53f, 0, view.getWidth(),
 				view.getHeight() * 0.8f, paintLine);
 
-		for (int i = 1; i < 10; i++ ) {
+		for (int i = 1; i < 10; i++) {
 			float x = (float) (view.getWidth() * 0.47f / 10.0 * i);
 			float y = (float) (view.getHeight() * 0.8f / 10.0 * i);
-			
-			canvas.drawLine(view.getWidth() * 0.53f + x, 0, view.getWidth() * 0.53f + x, view.getHeight() * 0.8f,
+
+			canvas.drawLine(view.getWidth() * 0.53f + x, 0, view.getWidth()
+					* 0.53f + x, view.getHeight() * 0.8f, paintLine);
+
+			canvas.drawLine(view.getWidth() * 0.53f, y, view.getWidth(), y,
 					paintLine);
-			
-			canvas.drawLine(view.getWidth() * 0.53f, y, view.getWidth(),
-					y, paintLine);
 		}
 	}
 
 	public void drawShot(Canvas canvas) {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				int x = (int) (view.getWidth() * 0.47f / 10.0 * (i+11));
+				int x = (int) (view.getWidth() * 0.47f / 10.0 * (i + 11));
 				int y = (int) (view.getHeight() * 0.8f / 10.0 * j);
 				float deltaX = (float) (view.getWidth() * 0.8f / 10.0) / 2;
 				float deltaY = (float) (view.getHeight() * 0.8f / 10.0) / 2;
-				
+
 				if (gameField[i][j] == 6) {
 					paintLine.setColor(Color.BLACK);
 					canvas.drawCircle(x + deltaX, y + deltaY,
@@ -65,12 +66,19 @@ public class EnemyGameField extends GameField {
 			}
 		}
 	}
-	
-	/*public void copyField(GameField gm){
-		for (int i = 0; i < 10; i++){
-			for (int j = 0; j < 10; j++){
-				this.gameField[i][j] = gm.gameField[i][j];
+
+	public static void initField() {
+		gameField = new int[10][10];
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				gameField[i][j] = 0;
 			}
 		}
-	}*/
+	}
+
+	/*
+	 * public void copyField(GameField gm){ for (int i = 0; i < 10; i++){ for
+	 * (int j = 0; j < 10; j++){ this.gameField[i][j] = gm.gameField[i][j]; } }
+	 * }
+	 */
 }

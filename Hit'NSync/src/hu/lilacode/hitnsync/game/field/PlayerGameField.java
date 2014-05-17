@@ -16,13 +16,14 @@ public class PlayerGameField extends GameField {
 
 	public PlayerGameField(View view) {
 		this.view = view;
-		gameField = new int[10][10];
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				gameField[i][j] = 0;
+		if (gameField == null) {
+			gameField = new int[10][10];
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					gameField[i][j] = 0;
+				}
 			}
 		}
-
 		paintLine = new Paint();
 		paintLine.setStyle(Style.STROKE);
 		paintLine.setStrokeWidth(5);
@@ -151,5 +152,14 @@ public class PlayerGameField extends GameField {
 		}
 
 		return true;
+	}
+
+	public static void initField() {
+		gameField = new int[10][10];
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				gameField[i][j] = 0;
+			}
+		}
 	}
 }
