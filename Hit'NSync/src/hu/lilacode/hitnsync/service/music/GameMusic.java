@@ -2,6 +2,7 @@ package hu.lilacode.hitnsync.service.music;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnPreparedListener;
 
 public class GameMusic {
 MediaPlayer mediaPlayer;
@@ -12,14 +13,20 @@ MediaPlayer mediaPlayer;
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		try {
 			mediaPlayer.setDataSource(url);
-			mediaPlayer.prepare();
+			mediaPlayer.prepareAsync();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 		
 		
 		mediaPlayer.setLooping(true);
-		mediaPlayer.start();
+		mediaPlayer.setOnPreparedListener(new OnPreparedListener() {
+			
+			@Override
+			public void onPrepared(MediaPlayer mp) {
+				mediaPlayer.start();
+			}
+		});
 	}
 	
 	public void play() {
