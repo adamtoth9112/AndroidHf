@@ -57,6 +57,8 @@ public class GameActivity extends Activity {
 		super.onDestroy();
 		
 		bluetooth.onDestroy();
+
+		gameMusic.stop();
 	}
 
 	@Override
