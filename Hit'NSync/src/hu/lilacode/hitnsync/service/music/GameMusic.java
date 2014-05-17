@@ -1,14 +1,23 @@
 package hu.lilacode.hitnsync.service.music;
 
-import hu.lilacode.hitnsync.R;
-import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 public class GameMusic {
 MediaPlayer mediaPlayer;
 	
-	public GameMusic(Context c) {
-		mediaPlayer = MediaPlayer.create(c, R.raw.nsyncbyebyebye);
+	public GameMusic() {
+		String url = "http://webglezek.uw.hu/gamemusic.mp3";
+		mediaPlayer = new MediaPlayer();
+		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		try {
+			mediaPlayer.setDataSource(url);
+			mediaPlayer.prepare();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		
 		mediaPlayer.setLooping(true);
 		mediaPlayer.start();
 	}

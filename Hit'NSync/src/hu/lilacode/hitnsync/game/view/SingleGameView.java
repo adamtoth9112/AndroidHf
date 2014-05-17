@@ -6,11 +6,10 @@ import hu.lilacode.hitnsync.game.field.EnemyGameField;
 import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.ship.Ship.Direction;
+import hu.lilacode.hitnsync.service.music.GameMusic;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -30,6 +29,7 @@ public class SingleGameView extends View {
 	private boolean play = false;
 	private boolean start = true;
 	private boolean drawshot = false;
+	private volatile boolean playerTurn = true;
 	protected Paint paintLine;
 	protected ArrayList<Ship> ships;
 	protected int shipNum = 0;
@@ -98,14 +98,14 @@ public class SingleGameView extends View {
 		userGameField.drawField(canvas);
 
 		enemyGameField.drawField(canvas);
-		if (play && drawshot) {
+//		if (play && drawshot) {
+//			enemyGameField.drawShot(canvas);
+//			userGameField.drawShot(canvas);
+//		}
+		//if (drawshot) {
 			enemyGameField.drawShot(canvas);
 			userGameField.drawShot(canvas);
-		}
-		if (drawshot) {
-			enemyGameField.drawShot(canvas);
-			userGameField.drawShot(canvas);
-		}
+		//}
 
 	}
 
@@ -130,7 +130,7 @@ public class SingleGameView extends View {
 
 			if (x < 10 && y < 10) {
 
-				if (userGameField.gameField[x][y] == 0 && shipNum < 6 && place) {
+				if (PlayerGameField.gameField[x][y] == 0 && shipNum < 6 && place) {
 
 					Ship addedShip = ships.get(shipNum - 1);
 
@@ -176,10 +176,10 @@ public class SingleGameView extends View {
 					}
 				}
 
-				else if (userGameField.gameField[x][y] == 0 && !place)
+				else if (PlayerGameField.gameField[x][y] == 0 && !place)
 					shipNum++;
 
-				else if (userGameField.gameField[x][y] != 0 && shipNum < 7) {
+				else if (PlayerGameField.gameField[x][y] != 0 && shipNum < 7) {
 					Ship addedShip;
 
 					addedShip = ships.get(shipNum - 2);
@@ -219,15 +219,15 @@ public class SingleGameView extends View {
 			}
 
 			if (x > 10 && x < 21 && y < 10) {
-				if (play) {
-					if (enemyGameField.gameField[x - 11][y] == 6
-							|| enemyGameField.gameField[x - 11][y] == 7) {
+				if (play  && playerTurn) {
+					if (EnemyGameField.gameField[x - 11][y] == 6
+							|| EnemyGameField.gameField[x - 11][y] == 7) {
 
 					} else {
 						shoot++;
 						sumshoot++;
-						if (enemyGameField.gameField[x - 11][y] == 0) {
-							enemyGameField.gameField[x - 11][y] = 6;
+						if (EnemyGameField.gameField[x - 11][y] == 0) {
+							EnemyGameField.gameField[x - 11][y] = 6;
 							if (shoot == 5) {
 								points = points - 5;
 								shoot = 0;
@@ -236,31 +236,33 @@ public class SingleGameView extends View {
 							}
 							player.points = points;
 						}
-						if (enemyGameField.gameField[x - 11][y] != 0
-								&& enemyGameField.gameField[x - 11][y] != 6
-								&& enemyGameField.gameField[x - 11][y] != 7) {
-							if (enemyGameField.gameField[x - 11][y] == 2) {
+						if (EnemyGameField.gameField[x - 11][y] != 0
+								&& EnemyGameField.gameField[x - 11][y] != 6
+								&& EnemyGameField.gameField[x - 11][y] != 7) {
+							if (EnemyGameField.gameField[x - 11][y] == 2) {
 								points = points + 20;
 								shoot = 0;
 							}
-							if (enemyGameField.gameField[x - 11][y] == 3) {
+							if (EnemyGameField.gameField[x - 11][y] == 3) {
 								points = points + 16;
 								shoot = 0;
 							}
-							if (enemyGameField.gameField[x - 11][y] == 4) {
+							if (EnemyGameField.gameField[x - 11][y] == 4) {
 								points = points + 14;
 								shoot = 0;
 							}
-							if (enemyGameField.gameField[x - 11][y] == 5) {
+							if (EnemyGameField.gameField[x - 11][y] == 5) {
 								points = points + 12;
 								shoot = 0;
 							}
-							enemyGameField.gameField[x - 11][y] = 7;
+							EnemyGameField.gameField[x - 11][y] = 7;
 							ut++;
 
 							player.points = points;
 
+							invalidate();
 						}
+						
 						AIShot();
 
 						if (ut == s) {
@@ -286,15 +288,16 @@ public class SingleGameView extends View {
 		int x = 0;
 		int y = 0;
 		boolean lo = true;
+
+		playerTurn = false;
 		
 		synchronized (this) {
 			try {
 				this.wait(1000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}	
 		}
-
+		
 		while (lo) {
 			x = rn.nextInt(10);
 			y = rn.nextInt(10);
@@ -317,7 +320,8 @@ public class SingleGameView extends View {
 
 			ait++;
 		}
-
+		
+		playerTurn = true;
 	}
 
 	void AIPlace() {
