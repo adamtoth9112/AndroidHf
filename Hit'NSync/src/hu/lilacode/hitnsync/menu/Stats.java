@@ -8,12 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Stats extends Activity {
-	PlayerStats ps;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stats);
-		ps = new PlayerStats();
 		
 		View table = (View) findViewById(R.id.tableRow1);
 		View row1 = (View) findViewById(R.id.tableRow2);
@@ -23,7 +21,7 @@ public class Stats extends Activity {
 		TextView r1f3 = (TextView) findViewById(R.id.textView3);
 		TextView r1f4 = (TextView) findViewById(R.id.textView4);
 		
-		r1f1.setText(ps.stats.get(0).name.toString());
+		
 
 	}
 
