@@ -85,6 +85,7 @@ public final class R {
         public static final int btnSingle=0x7f090013;
         public static final int btnStats=0x7f090015;
         public static final int button_scan=0x7f09000b;
+        public static final int dialogtext=0x7f09000e;
         public static final int kulsokeret=0x7f09000c;
         public static final int mExitDialogDesc=0x7f09000d;
         public static final int mExitDialogTitleBorder=0x7f09000f;
@@ -103,7 +104,6 @@ public final class R {
         public static final int textView7=0x7f090006;
         public static final int title_new_devices=0x7f090009;
         public static final int title_paired_devices=0x7f090007;
-        public static final int torlesszoveg=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_game_multi=0x7f030000;
@@ -135,6 +135,7 @@ public final class R {
         public static final int TextStart=0x7f060006;
         public static final int action_settings=0x7f060009;
         public static final int app_name=0x7f060000;
+        public static final int betoltsek=0x7f060020;
         public static final int bt_not_enabled_leaving=0x7f060012;
         public static final int button_scan=0x7f06001c;
         public static final int cel=0x7f06000f;

@@ -266,16 +266,14 @@ public class Bluetooth {
 				}
 				break;
 			case MESSAGE_WRITE:
-				byte[] writeBuf = (byte[]) msg.obj;
+				byte[] writeBuf = new byte[100];
 				// construct a string from the buffer
 
 				// String writeMessage = new String(writeBuf);
 
 				for (int i = 0; i < 10; i++) {
 					for (int j = 0; j < 10; j++) {
-						EnemyGameField.gameField[i][j] = (int) writeBuf[i * 10
-								+ j];
-						System.out.println("GET: " + writeBuf[i * 10 + j]);
+						writeBuf[i * 10 + j] = (byte) EnemyGameField.gameField[i][j];
 					}
 				}
 

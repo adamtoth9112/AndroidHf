@@ -2,6 +2,7 @@ package hu.lilacode.hitnsync.game.view;
 
 import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.game.Player;
+import hu.lilacode.hitnsync.game.SingleGameActivity;
 import hu.lilacode.hitnsync.game.field.EnemyGameField;
 import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
@@ -12,7 +13,9 @@ import java.util.Random;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,6 +51,9 @@ public class SingleGameView extends View {
 	byte[] kar;
 	private Context context;
 
+	private SharedPreferences prefs;
+	private String prefName = "gameState";
+
 	public SingleGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
@@ -66,11 +72,20 @@ public class SingleGameView extends View {
 		ocean = BitmapFactory.decodeResource(res, R.drawable.ocean);
 
 		rn = new Random();
-
-		AIPlace();
+		
+		prefs = context.getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
+		
+		if (prefs.getBoolean(SingleGameActivity.STATE, false)) {
+			play = true;
+            drawshot = true;
+            place = false;
+            start = false;
+            invalidate();
+		}
+		else
+			AIPlace();
 
 		player = new Player(this.getContext());
-
 	}
 
 	private void createShip() {

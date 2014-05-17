@@ -40,7 +40,7 @@ public class Player extends Thread {
 
 		prefs = ctx.getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
 
-		Log.e("Pref", "Pref elkészült");
+		Log.d("Pref", "Pref elkészült");
 
 	}
 
