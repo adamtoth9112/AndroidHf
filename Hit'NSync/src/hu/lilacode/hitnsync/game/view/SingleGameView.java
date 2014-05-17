@@ -9,6 +9,8 @@ import hu.lilacode.hitnsync.game.ship.Ship.Direction;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -44,7 +46,7 @@ public class SingleGameView extends View {
 
 	public SingleGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
+		
 		userGameField = new PlayerGameField(this);
 		enemyGameField = new EnemyGameField(this);
 
@@ -284,6 +286,14 @@ public class SingleGameView extends View {
 		int x = 0;
 		int y = 0;
 		boolean lo = true;
+		
+		synchronized (this) {
+			try {
+				this.wait(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}	
+		}
 
 		while (lo) {
 			x = rn.nextInt(10);

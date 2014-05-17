@@ -1,13 +1,13 @@
-package hu.lilacode.hitnsync.service;
+package hu.lilacode.hitnsync.service.music;
 
 import hu.lilacode.hitnsync.R;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-public class Music {
-	MediaPlayer mediaPlayer;
+public class GameMusic {
+MediaPlayer mediaPlayer;
 	
-	public Music(Context c) {
+	public GameMusic(Context c) {
 		mediaPlayer = MediaPlayer.create(c, R.raw.nsyncbyebyebye);
 		mediaPlayer.setLooping(true);
 		mediaPlayer.start();

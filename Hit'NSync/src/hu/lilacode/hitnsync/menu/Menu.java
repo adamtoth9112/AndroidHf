@@ -3,7 +3,7 @@ package hu.lilacode.hitnsync.menu;
 import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.game.GameActivity;
 import hu.lilacode.hitnsync.game.SingleGameActivity;
-import hu.lilacode.hitnsync.service.Music;
+import hu.lilacode.hitnsync.service.music.Music;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
