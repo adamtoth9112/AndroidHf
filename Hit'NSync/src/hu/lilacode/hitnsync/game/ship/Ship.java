@@ -1,17 +1,20 @@
 package hu.lilacode.hitnsync.game.ship;
 
+import java.io.Serializable;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.view.View;
 
-public class Ship {
+@SuppressWarnings("serial")
+public class Ship implements Serializable{
 	public enum Direction {
 		Horizontal, Vertical
 	};
 
-	public class Position {
+	public class Position implements Serializable{
 		public float x;
 		public float y;
 
@@ -25,8 +28,8 @@ public class Ship {
 	public Direction direction = Direction.Horizontal;
 	public Position[] coord;
 	public int len;
-	protected Paint paintLine;
-	protected View view;
+	protected transient Paint paintLine;
+	protected transient View view;
 	protected float deltaX, deltaY;
 
 	public Ship(View view, int len, float startCoordX, float startCoordY,

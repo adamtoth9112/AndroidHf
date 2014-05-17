@@ -11,10 +11,8 @@ import hu.lilacode.hitnsync.game.ship.Ship.Direction;
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -23,10 +21,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 public class SingleGameView extends View {
 	private PlayerGameField userGameField;
@@ -37,7 +33,7 @@ public class SingleGameView extends View {
 	private boolean drawshot = false;
 	private volatile boolean playerTurn = true;
 	protected Paint paintLine;
-	protected ArrayList<Ship> ships;
+	public static ArrayList<Ship> ships;
 	protected int shipNum = 0;
 	protected Bitmap ocean;
 	private Random rn;
@@ -66,8 +62,6 @@ public class SingleGameView extends View {
 		paintLine.setStyle(Style.STROKE);
 		paintLine.setStrokeWidth(5);
 
-		ships = new ArrayList<Ship>();
-
 		Resources res = getResources();
 		ocean = BitmapFactory.decodeResource(res, R.drawable.ocean);
 
@@ -85,6 +79,7 @@ public class SingleGameView extends View {
 		else {
 			enemyGameField.initField();
 			userGameField.initField();
+			ships = new ArrayList<Ship>();
 			AIPlace();
 		}
 		player = new Player(this.getContext());
