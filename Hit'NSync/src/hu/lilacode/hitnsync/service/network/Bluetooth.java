@@ -35,7 +35,7 @@ import android.widget.Toast;
  */
 public class Bluetooth {
 	// Debugging
-	private static final String TAG = "BluetoothChat";
+	private static final String TAG = "Hit'NSync";
 	private static final boolean D = true;
 
 	// Message types sent from the BluetoothChatService Handler

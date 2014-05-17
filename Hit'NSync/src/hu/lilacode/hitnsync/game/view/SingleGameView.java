@@ -6,12 +6,13 @@ import hu.lilacode.hitnsync.game.field.EnemyGameField;
 import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.ship.Ship.Direction;
-import hu.lilacode.hitnsync.service.music.GameMusic;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,8 +20,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 public class SingleGameView extends View {
 	private PlayerGameField userGameField;
@@ -43,9 +46,12 @@ public class SingleGameView extends View {
 	private int points = 0;
 	private int s = 0;
 	byte[] kar;
+	private Context context;
 
 	public SingleGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		
+		this.context = context;
 		
 		userGameField = new PlayerGameField(this);
 		enemyGameField = new EnemyGameField(this);
@@ -378,4 +384,5 @@ public class SingleGameView extends View {
 
 		}
 	}
-}
+
+	}

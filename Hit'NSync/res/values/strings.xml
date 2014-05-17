@@ -18,28 +18,24 @@
     <string name="talalat">A találatot a játékmezőkön piros színnel, a hibás lövéseket fekete körrel jelüljük</string>
     <string name="cel">A cél: minél előbb megsemmisíteni az ellenfél hajóit</string>
     <string name="jatekmod">A játékot játszathot barátoddal BlueTooth segítségével vagy gépi ellenfél ellen</string>
-    
 
     <!-- BluetoothChat -->
-    <string name="send">Send</string>
-    <string name="not_connected">You are not connected to a device</string>
-    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Bluetooth Chat.</string>
-    <string name="title_connecting">connecting...</string>
-    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
-    <string name="title_not_connected">not connected</string>
+    <string name="not_connected">Nincs kapcsolat</string>
+    <string name="bt_not_enabled_leaving">Bluetooth nincs bekapcsolva</string>
+    <string name="title_connecting">kapcsolódás...</string>
+    <string name="title_connected_to">kapcsolódás: <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="title_not_connected">nincs kapcsolat</string>
 
     <!-- DeviceListActivity -->
-    <string name="scanning">scanning for devices...</string>
-    <string name="select_device">select a device to connect</string>
-    <string name="none_paired">No devices have been paired</string>
-    <string name="none_found">No devices found</string>
-    <string name="title_paired_devices">Paired Devices</string>
-    <string name="title_other_devices">Other Available Devices</string>
-    <string name="button_scan">Scan for devices</string>
-
-    <!-- Options Menu -->
-    <string name="secure_connect">Connect a device - Secure</string>
-    <string name="insecure_connect">Connect a device - Insecure</string>
-    <string name="discoverable">Make discoverable</string>
+    <string name="scanning">eszközök keresése...</string>
+    <string name="select_device">válassz készüléket</string>
+    <string name="none_paired">Nincsenek párosított eszközök</string>
+    <string name="none_found">Nem található eszköz</string>
+    <string name="title_paired_devices">Párosított készülékek</string>
+    <string name="title_other_devices">További elérhető készülékek</string>
+    <string name="button_scan">Eszközök keresése</string>
+    <string name="ok">OK</string>
+    <string name="megse">Mégse</string>
+    <string name="mentsek">Elmentsem a játékállást?</string>
 
 </resources>

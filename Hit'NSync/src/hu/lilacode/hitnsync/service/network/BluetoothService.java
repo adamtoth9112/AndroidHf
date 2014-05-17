@@ -39,7 +39,7 @@ import android.util.Log;
  */
 public class BluetoothService {
 	// Debugging
-	private static final String TAG = "BluetoothChatService";
+	private static final String TAG = "Hit'NSyncService";
 	private static final boolean D = true;
 
 	// Name for the SDP record when creating server socket
