@@ -65,22 +65,22 @@ public class Ship implements Serializable {
 
 		for (int i = 0; i < len; i++) {
 			if (len == 2) {
-				paintLine.setColor(Color.rgb(0, 102, 0));
+				paintLine.setColor(Color.rgb(0, 255, 0));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
 						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 			if (len == 3) {
-				paintLine.setColor(Color.rgb(0, 0, 102));
+				paintLine.setColor(Color.rgb(0, 255, 255));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
 						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 			if (len == 4) {
-				paintLine.setColor(Color.rgb(255, 255, 51));
+				paintLine.setColor(Color.rgb(255, 255, 0));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
 						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 			if (len == 5) {
-				paintLine.setColor(Color.rgb(153, 0, 0));
+				paintLine.setColor(Color.rgb(255, 0, 0));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
 						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}

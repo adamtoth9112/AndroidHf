@@ -1,10 +1,13 @@
 package hu.lilacode.hitnsync.game.field;
 
+import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.ship.Ship.Direction;
 
 import java.util.ArrayList;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
