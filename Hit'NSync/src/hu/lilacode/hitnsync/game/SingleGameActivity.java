@@ -34,7 +34,7 @@ public class SingleGameActivity extends Activity {
 	private GameMusic gameMusic;
 	private SharedPreferences prefs;
 	private String prefName = "gameState";
-	private MyAdView adview;
+	//private MyAdView adview;
 	public static final String STATE = "state";
 
 	@Override
@@ -46,9 +46,11 @@ public class SingleGameActivity extends Activity {
 		gameMusic = new GameMusic();
 
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
-		adview = new MyAdView(this, AdSize.BANNER);
 
 		setContentView(R.layout.activity_game_single);
+		
+
+		//adview = new MyAdView(this, AdSize.BANNER);
 	}
 
 	@Override
@@ -61,7 +63,7 @@ public class SingleGameActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		gameMusic.play();
-		adview.loadAd(new AdRequest()); 
+		//adview.loadAd(new AdRequest()); 
 	}
 
 	@Override

@@ -7,10 +7,12 @@ import hu.lilacode.hitnsync.game.field.EnemyGameField;
 import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.ship.Ship.Direction;
+import hu.lilacode.hitnsync.service.network.MyAdView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
@@ -23,6 +25,11 @@ import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 
 public class SingleGameView extends View {
 	private PlayerGameField userGameField;
@@ -46,6 +53,7 @@ public class SingleGameView extends View {
 	private int enemyShipNumber = 0;
 	byte[] kar;
 	private Context context;
+	
 
 	private SharedPreferences prefs;
 	private String prefName = "gameState";
