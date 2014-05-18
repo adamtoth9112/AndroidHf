@@ -1,9 +1,5 @@
 package hu.lilacode.hitnsync.menu;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-
 import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.game.GameActivity;
 import hu.lilacode.hitnsync.game.SingleGameActivity;
@@ -12,6 +8,12 @@ import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.view.SingleGameView;
 import hu.lilacode.hitnsync.service.music.Music;
+import hu.lilacode.hitnsync.service.network.MyAdView;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContextWrapper;
@@ -24,10 +26,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+
 public class Menu extends Activity {
 	Music music;
 	private SharedPreferences prefs;
 	private String prefName = "gameState";
+	private MyAdView adview;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,8 @@ public class Menu extends Activity {
 		music = new Music(this);
 
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
+		
+		adview = new MyAdView(this, AdSize.BANNER);
 
 		Button btnMulty = (Button) findViewById(R.id.btnMulty);
 		Button btnSingle = (Button) findViewById(R.id.btnSingle);
@@ -101,6 +109,7 @@ public class Menu extends Activity {
 	protected void onResume() {
 		super.onResume();
 		music.play();
+		adview.loadAd(new AdRequest()); 
 	}
 
 	@SuppressWarnings("unchecked")

@@ -2,15 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/main"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="hu.lilacode.hitnsync.menu.Menu" 
-     >
+    tools:context="hu.lilacode.hitnsync.menu.Menu" >
 
     <TextView
         android:id="@+id/textView1"
@@ -40,9 +39,9 @@
         android:id="@+id/btnSingle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/SinglePlayer" 
+        android:text="@string/SinglePlayer"
         android:textSize="25dp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/btnOption"
@@ -67,5 +66,12 @@
         android:text="@string/Credits"
         android:textSize="25dp"
         android:textStyle="italic" />
+
+    <!-- Reklám helye -->
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
