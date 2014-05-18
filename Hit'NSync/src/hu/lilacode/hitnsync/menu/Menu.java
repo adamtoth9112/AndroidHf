@@ -21,13 +21,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class Menu extends Activity {
 	Music music;
@@ -40,6 +42,13 @@ public class Menu extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
 
+		if (ConnectionResult.SUCCESS == GooglePlayServicesUtil.isGooglePlayServicesAvailable(this)) {
+			Log.d("Play Services", "SERVICES: SUCCESS");
+		}
+		else
+			Log.e("Play Services", "SERVICES: FAILED");
+			
+		
 		music = new Music(this);
 
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
@@ -103,13 +112,20 @@ public class Menu extends Activity {
 	protected void onPause() {
 		super.onPause();
 		music.stop();
+		adview.mAdView.pause();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		music.play();
-		adview.loadAd(new AdRequest()); 
+		adview.mAdView.resume();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		adview.mAdView.destroy();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -183,4 +199,5 @@ public class Menu extends Activity {
 
 		dialogbox.show();
 	}
+	
 }
