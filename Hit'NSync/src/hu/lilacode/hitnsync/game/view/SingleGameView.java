@@ -43,7 +43,7 @@ public class SingleGameView extends View {
 	private int shoot = 0;
 	private int sumshoot = 0;
 	private int points = 0;
-	private int s = 0;
+	private int enemyShipNumber = 0;
 	byte[] kar;
 	private Context context;
 
@@ -79,6 +79,20 @@ public class SingleGameView extends View {
 				ship.createPaint();
 				ship.setView(this);
 			}
+			for (int i = 0; i < 10; i++){
+				for (int j = 0; j < 10; j++){
+					if (userGameField.gameField[i][j] == 7){
+						ait++;
+					}
+					if (enemyGameField.gameField[i][j] == 7){
+						ut++;
+					}
+					if (enemyGameField.gameField[i][j] != 0 && enemyGameField.gameField[i][j] != 6){
+						enemyShipNumber++;
+					}
+				}
+			}
+			System.out.println(ut + "  " + ait);
 			invalidate();
 		} else {
 			enemyGameField.initField();
@@ -290,7 +304,7 @@ public class SingleGameView extends View {
 
 						AIShot();
 
-						if (ut == s) {
+						if (ut == enemyShipNumber) {
 							play = false;
 							player.shoot = sumshoot;
 
@@ -397,7 +411,7 @@ public class SingleGameView extends View {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (enemyGameField.gameField[i][j] != 0) {
-					s++;
+					enemyShipNumber++;
 				}
 			}
 
