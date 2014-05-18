@@ -9,12 +9,12 @@ import android.graphics.Paint.Style;
 import android.view.View;
 
 @SuppressWarnings("serial")
-public class Ship implements Serializable{
+public class Ship implements Serializable {
 	public enum Direction {
 		Horizontal, Vertical
 	};
 
-	public class Position implements Serializable{
+	public class Position implements Serializable {
 		public float x;
 		public float y;
 
@@ -28,19 +28,23 @@ public class Ship implements Serializable{
 	public Direction direction = Direction.Horizontal;
 	public Position[] coord;
 	public int len;
-	protected transient Paint paintLine;
-	protected transient View view;
+	private transient Paint paintLine;
+	private transient View view;
 	protected float deltaX, deltaY;
 
 	public Ship(View view, int len, float startCoordX, float startCoordY,
 			float deltaX, float deltaY) {
-		this.view = view;
+		this.setView(view);
 		this.len = len;
 		this.deltaX = deltaX;
 		this.deltaY = deltaY;
 		coord = new Position[len];
 		moveShip(startCoordX, startCoordY);
 
+		createPaint();
+	}
+
+	public void createPaint() {
 		paintLine = new Paint();
 		paintLine.setStyle(Style.FILL);
 		paintLine.setStrokeWidth(5);
@@ -63,22 +67,22 @@ public class Ship implements Serializable{
 			if (len == 2) {
 				paintLine.setColor(Color.rgb(0, 102, 0));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
-						/ 2, view.getHeight() * 0.8f / 20 - 20, paintLine);
+						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 			if (len == 3) {
 				paintLine.setColor(Color.rgb(0, 0, 102));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
-						/ 2, view.getHeight() * 0.8f / 20 - 20, paintLine);
+						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 			if (len == 4) {
 				paintLine.setColor(Color.rgb(255, 255, 51));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
-						/ 2, view.getHeight() * 0.8f / 20 - 20, paintLine);
+						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 			if (len == 5) {
 				paintLine.setColor(Color.rgb(153, 0, 0));
 				canvas.drawCircle(coord[i].x + deltaX / 2, coord[i].y + deltaY
-						/ 2, view.getHeight() * 0.8f / 20 - 20, paintLine);
+						/ 2, getView().getHeight() * 0.8f / 20 - 20, paintLine);
 			}
 
 		}
@@ -90,4 +94,13 @@ public class Ship implements Serializable{
 		else
 			direction = Direction.Horizontal;
 	}
+
+	public View getView() {
+		return view;
+	}
+
+	public void setView(View view) {
+		this.view = view;
+	}
+
 }

@@ -8,11 +8,8 @@ import hu.lilacode.hitnsync.game.view.SingleGameView;
 import hu.lilacode.hitnsync.service.music.GameMusic;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -21,13 +18,13 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class SingleGameActivity extends Activity {
 	private GameMusic gameMusic;
@@ -44,10 +41,6 @@ public class SingleGameActivity extends Activity {
 		gameMusic = new GameMusic();
 
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
-
-		if (prefs.getBoolean(STATE, false)) {
-			doDialog(true);
-		}
 
 		setContentView(R.layout.activity_game_single);
 	}
@@ -66,40 +59,25 @@ public class SingleGameActivity extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			doDialog(false);
+		if (keyCode == KeyEvent.KEYCODE_BACK && !SingleGameView.start) {
+			doDialog();
 		}
 		return false;
 	}
 
-	private void doDialog(final boolean load) {
+	private void doDialog() {
 
 		final Dialog dialogbox = new Dialog(this, R.style.FullHeightDialog);
 		dialogbox.setContentView(R.layout.dialog_box_layout);
 		dialogbox.setCancelable(true);
 
-		if (load) {
-			String dialogText = getResources().getText(R.string.betoltsek)
-					.toString();
-
-			TextView tvDialog = (TextView) dialogbox
-					.findViewById(R.id.dialogtext);
-
-			tvDialog.setText(dialogText);
-		}
-
 		Button ok = (Button) dialogbox.findViewById(R.id.ok);
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (load) {
-					loadGame();
-					dialogbox.dismiss();
-				} else {
 					saveGame();
 					dialogbox.dismiss();
 					finish();
-				}
 			}
 		});
 
@@ -107,22 +85,16 @@ public class SingleGameActivity extends Activity {
 		megse.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (load) {
-					dialogbox.dismiss();
-					EnemyGameField.initField();
-					PlayerGameField.initField();
-					setPrefState(false);
-				} else {
 					dialogbox.dismiss();
 					setPrefState(false);
 					finish();
-				}
 			}
 		});
 
 		dialogbox.show();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void saveGame() {
 		String file1 = "/Android/data/hu.lilacode.Hit'NSync/userState";
 		String file2 = "/Android/data/hu.lilacode.Hit'NSync/enemyState";
@@ -158,37 +130,12 @@ public class SingleGameActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-
-	@SuppressWarnings("unchecked")
-	private void loadGame() {
-		String file1 = "/Android/data/hu.lilacode.Hit'NSync/userState";
-		String file2 = "/Android/data/hu.lilacode.Hit'NSync/enemyState";
-		String file3 = "/Android/data/hu.lilacode.Hit'NSync/ships";
-		ObjectInputStream ois;
-
-		try {
-			ois = new ObjectInputStream(new FileInputStream(Environment
-					.getExternalStorageDirectory().getPath() + file1));
-			PlayerGameField.gameField = (int[][]) ois.readObject();
-			ois.close();
-			ois = new ObjectInputStream(new FileInputStream(Environment
-					.getExternalStorageDirectory().getPath() + file2));
-			EnemyGameField.gameField = (int[][]) ois.readObject();
-			ois.close();
-			ois = new ObjectInputStream(new FileInputStream(Environment
-					.getExternalStorageDirectory().getPath() + file3));
-			SingleGameView.ships = (ArrayList<Ship>) ois.readObject();
-			ois.close();
-			setPrefState(false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
+	
 	private void setPrefState(boolean hasSave) {
 		SharedPreferences.Editor editor = prefs.edit();
-		editor.putBoolean(STATE, hasSave);
+		editor.putBoolean(SingleGameActivity.STATE, hasSave);
+		Log.d("'NSync","Jatek elmentve");
 		editor.commit();
 	}
+
 }

@@ -29,7 +29,7 @@ public class SingleGameView extends View {
 	private EnemyGameField enemyGameField;
 	private boolean place = true;
 	private boolean play = false;
-	private boolean start = true;
+	public static boolean start = true;
 	private boolean drawshot = false;
 	private volatile boolean playerTurn = true;
 	protected Paint paintLine;
@@ -52,9 +52,9 @@ public class SingleGameView extends View {
 
 	public SingleGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		
+
 		this.context = context;
-		
+
 		userGameField = new PlayerGameField(this);
 		enemyGameField = new EnemyGameField(this);
 
@@ -66,17 +66,21 @@ public class SingleGameView extends View {
 		ocean = BitmapFactory.decodeResource(res, R.drawable.ocean);
 
 		rn = new Random();
-		
-		prefs = context.getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
-		
+
+		prefs = context.getSharedPreferences(prefName,
+				ContextWrapper.MODE_PRIVATE);
+
 		if (prefs.getBoolean(SingleGameActivity.STATE, false)) {
 			play = true;
-            drawshot = true;
-            place = false;
-            start = false;
-            invalidate();
-		}
-		else {
+			drawshot = true;
+			place = false;
+			start = false;
+			for (Ship ship : ships) {
+				ship.createPaint();
+				ship.setView(this);
+			}
+			invalidate();
+		} else {
 			enemyGameField.initField();
 			userGameField.initField();
 			ships = new ArrayList<Ship>();
@@ -110,20 +114,21 @@ public class SingleGameView extends View {
 			createShip();
 			start = !start;
 		}
+
 		for (Ship s : ships)
 			s.drawShip(canvas);
-
+		
 		userGameField.drawField(canvas);
 
 		enemyGameField.drawField(canvas);
-//		if (play && drawshot) {
-//			enemyGameField.drawShot(canvas);
-//			userGameField.drawShot(canvas);
-//		}
-		//if (drawshot) {
-			enemyGameField.drawShot(canvas);
-			userGameField.drawShot(canvas);
-		//}
+		// if (play && drawshot) {
+		// enemyGameField.drawShot(canvas);
+		// userGameField.drawShot(canvas);
+		// }
+		// if (drawshot) {
+		enemyGameField.drawShot(canvas);
+		userGameField.drawShot(canvas);
+		// }
 
 	}
 
@@ -136,6 +141,7 @@ public class SingleGameView extends View {
 				canvas.drawBitmap(ocean, ocean.getWidth() * j,
 						ocean.getHeight() * i, null);
 	}
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int action = event.getAction();
@@ -148,7 +154,8 @@ public class SingleGameView extends View {
 
 			if (x < 10 && y < 10) {
 
-				if (PlayerGameField.gameField[x][y] == 0 && shipNum < 6 && place) {
+				if (PlayerGameField.gameField[x][y] == 0 && shipNum < 6
+						&& place) {
 
 					Ship addedShip = ships.get(shipNum - 1);
 
@@ -237,7 +244,7 @@ public class SingleGameView extends View {
 			}
 
 			if (x > 10 && x < 21 && y < 10) {
-				if (play  && playerTurn) {
+				if (play && playerTurn) {
 					if (EnemyGameField.gameField[x - 11][y] == 6
 							|| EnemyGameField.gameField[x - 11][y] == 7) {
 
@@ -280,7 +287,7 @@ public class SingleGameView extends View {
 
 							invalidate();
 						}
-						
+
 						AIShot();
 
 						if (ut == s) {
@@ -308,14 +315,14 @@ public class SingleGameView extends View {
 		boolean lo = true;
 
 		playerTurn = false;
-		
+
 		synchronized (this) {
 			try {
 				this.wait(1000);
 			} catch (InterruptedException e) {
-			}	
+			}
 		}
-		
+
 		while (lo) {
 			x = rn.nextInt(10);
 			y = rn.nextInt(10);
@@ -338,7 +345,7 @@ public class SingleGameView extends View {
 
 			ait++;
 		}
-		
+
 		playerTurn = true;
 	}
 
@@ -397,4 +404,4 @@ public class SingleGameView extends View {
 		}
 	}
 
-	}
+}
