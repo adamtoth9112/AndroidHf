@@ -1,8 +1,12 @@
 package hu.lilacode.hitnsync.game;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+
 import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.service.music.GameMusic;
 import hu.lilacode.hitnsync.service.network.Bluetooth;
+import hu.lilacode.hitnsync.service.network.MyAdView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.view.WindowManager;
 public class GameActivity extends Activity {
 	public static Bluetooth bluetooth;
 	private GameMusic gameMusic;
+	private MyAdView adview;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,8 @@ public class GameActivity extends Activity {
 		bluetooth.onCreate(this);
 		
 		gameMusic = new GameMusic();
+		
+		adview = new MyAdView(this, AdSize.BANNER);
 	}
 
 	@Override
@@ -47,9 +54,8 @@ public class GameActivity extends Activity {
 		super.onResume();
 		
 		bluetooth.onResume();
-		
-
 		gameMusic.play();
+		adview.loadAd(new AdRequest()); 
 	}
 
 	@Override

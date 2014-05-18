@@ -8,5 +8,13 @@
     <hu.lilacode.hitnsync.game.view.SingleGameView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    
+    <!-- Reklám helye -->
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
