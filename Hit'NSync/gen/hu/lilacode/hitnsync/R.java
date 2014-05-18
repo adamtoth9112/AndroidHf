@@ -22,13 +22,24 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int main=0x7f020001;
-        public static final int ocean=0x7f020002;
-        public static final int option=0x7f020003;
-        public static final int splash=0x7f020004;
-        public static final int splash_black=0x7f020005;
-        public static final int stats=0x7f020006;
+        public static final int harmas=0x7f020000;
+        public static final int harmast=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int kettes=0x7f020003;
+        public static final int kettest=0x7f020004;
+        public static final int main=0x7f020005;
+        public static final int mellea=0x7f020006;
+        public static final int melleb=0x7f020007;
+        public static final int mellec=0x7f020008;
+        public static final int negyes=0x7f020009;
+        public static final int negyest=0x7f02000a;
+        public static final int ocean=0x7f02000b;
+        public static final int option=0x7f02000c;
+        public static final int otos=0x7f02000d;
+        public static final int otost=0x7f02000e;
+        public static final int splash=0x7f02000f;
+        public static final int splash_black=0x7f020010;
+        public static final int stats=0x7f020011;
     }
     public static final class id {
         public static final int NameField=0x7f090018;
