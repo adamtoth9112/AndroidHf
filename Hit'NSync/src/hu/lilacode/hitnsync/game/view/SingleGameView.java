@@ -1,18 +1,17 @@
 package hu.lilacode.hitnsync.game.view;
 
 import hu.lilacode.hitnsync.R;
-import hu.lilacode.hitnsync.game.Player;
 import hu.lilacode.hitnsync.game.SingleGameActivity;
+import hu.lilacode.hitnsync.game.data.GameSetUp;
+import hu.lilacode.hitnsync.game.data.Player;
 import hu.lilacode.hitnsync.game.field.EnemyGameField;
 import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.ship.Ship.Direction;
-import hu.lilacode.hitnsync.service.network.MyAdView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
@@ -25,11 +24,6 @@ import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
 
 public class SingleGameView extends View {
 	private PlayerGameField userGameField;
@@ -44,16 +38,10 @@ public class SingleGameView extends View {
 	protected int shipNum = 0;
 	protected Bitmap ocean;
 	private Random rn;
-	private int ait = 0;
-	private int ut = 0;
 	Player player;
-	private int shoot = 0;
-	private int sumshoot = 0;
-	private int points = 0;
-	private int enemyShipNumber = 0;
 	byte[] kar;
 	private Context context;
-	
+	GameSetUp gsu;
 
 	private SharedPreferences prefs;
 	private String prefName = "gameState";
@@ -69,6 +57,8 @@ public class SingleGameView extends View {
 		paintLine = new Paint();
 		paintLine.setStyle(Style.STROKE);
 		paintLine.setStrokeWidth(5);
+
+		gsu = new GameSetUp();
 
 		Resources res = getResources();
 		ocean = BitmapFactory.decodeResource(res, R.drawable.ocean);
@@ -87,26 +77,17 @@ public class SingleGameView extends View {
 				ship.createPaint();
 				ship.setView(this);
 			}
-			for (int i = 0; i < 10; i++){
-				for (int j = 0; j < 10; j++){
-					if (userGameField.gameField[i][j] == 7){
-						ait++;
-					}
-					if (enemyGameField.gameField[i][j] == 7){
-						ut++;
-					}
-					if (enemyGameField.gameField[i][j] != 0 && enemyGameField.gameField[i][j] != 6){
-						enemyShipNumber++;
-					}
-				}
-			}
-			System.out.println(ut + "  " + ait);
+			gsu.load();
 			invalidate();
 		} else {
 			enemyGameField.initField();
 			userGameField.initField();
 			ships = new ArrayList<Ship>();
 			AIPlace();
+			place = true;
+			shipNum = 0;
+			play = false;
+			start = true;
 		}
 		player = new Player(this.getContext());
 	}
@@ -139,7 +120,7 @@ public class SingleGameView extends View {
 
 		for (Ship s : ships)
 			s.drawShip(canvas);
-		
+
 		userGameField.drawField(canvas);
 
 		enemyGameField.drawField(canvas);
@@ -271,53 +252,54 @@ public class SingleGameView extends View {
 							|| EnemyGameField.gameField[x - 11][y] == 7) {
 
 					} else {
-						shoot++;
-						sumshoot++;
+						gsu.userShoot++;
+						gsu.userTotalShoot++;
 						if (EnemyGameField.gameField[x - 11][y] == 0) {
 							EnemyGameField.gameField[x - 11][y] = 6;
-							if (shoot == 5) {
-								points = points - 5;
-								shoot = 0;
+							if (gsu.userShoot == 5) {
+								gsu.userPoints = gsu.userPoints - 5;
+								gsu.userShoot = 0;
 							} else {
-								points--;
+								gsu.userPoints--;
 							}
-							player.points = points;
+							player.points = gsu.userPoints;
 						}
 						if (EnemyGameField.gameField[x - 11][y] != 0
 								&& EnemyGameField.gameField[x - 11][y] != 6
 								&& EnemyGameField.gameField[x - 11][y] != 7) {
 							if (EnemyGameField.gameField[x - 11][y] == 2) {
-								points = points + 20;
-								shoot = 0;
+								gsu.userPoints = gsu.userPoints + 20;
+								gsu.userShoot = 0;
 							}
 							if (EnemyGameField.gameField[x - 11][y] == 3) {
-								points = points + 16;
-								shoot = 0;
+								gsu.userPoints = gsu.userPoints + 16;
+								gsu.userShoot = 0;
 							}
 							if (EnemyGameField.gameField[x - 11][y] == 4) {
-								points = points + 14;
-								shoot = 0;
+								gsu.userPoints = gsu.userPoints + 14;
+								gsu.userShoot = 0;
 							}
 							if (EnemyGameField.gameField[x - 11][y] == 5) {
-								points = points + 12;
-								shoot = 0;
+								gsu.userPoints = gsu.userPoints + 12;
+								gsu.userShoot = 0;
 							}
 							EnemyGameField.gameField[x - 11][y] = 7;
-							ut++;
+							gsu.userTalalat++;
 
-							player.points = points;
+							player.points = gsu.userPoints;
 
 							invalidate();
 						}
 
 						AIShot();
+						gsu.save();
 
-						if (ut == enemyShipNumber) {
+						if (gsu.userTalalat == gsu.enemyShipNumber) {
 							play = false;
-							player.shoot = sumshoot;
+							player.shoot = gsu.userTotalShoot;
 
 						}
-						if (ait == 16) {
+						if (gsu.aiTalalat == 16) {
 							play = false;
 
 						}
@@ -356,16 +338,43 @@ public class SingleGameView extends View {
 			}
 		}
 
+		gsu.aiShoot++;
+		gsu.aiTotalShoot++;
+
 		if (userGameField.gameField[x][y] == 0) {
 			userGameField.gameField[x][y] = 6;
+			if (gsu.aiShoot == 5) {
+				gsu.aiPoints = gsu.aiPoints - 5;
+				gsu.aiShoot = 0;
+			} else {
+				gsu.aiPoints--;
+			}
 		}
 
 		if (userGameField.gameField[x][y] != 0
 				&& userGameField.gameField[x][y] != 6
 				&& userGameField.gameField[x][y] != 7) {
+
+			if (userGameField.gameField[x][y] == 2) {
+				gsu.aiPoints = gsu.aiPoints + 20;
+				gsu.aiShoot = 0;
+			}
+			if (userGameField.gameField[x][y] == 3) {
+				gsu.aiPoints = gsu.aiPoints + 16;
+				gsu.aiShoot = 0;
+			}
+			if (userGameField.gameField[x][y] == 4) {
+				gsu.aiPoints = gsu.aiPoints + 14;
+				gsu.aiShoot = 0;
+			}
+			if (userGameField.gameField[x][y] == 5) {
+				gsu.aiPoints = gsu.aiPoints + 12;
+				gsu.aiShoot = 0;
+			}
+
 			userGameField.gameField[x][y] = 7;
 
-			ait++;
+			gsu.aiTalalat++;
 		}
 
 		playerTurn = true;
@@ -419,7 +428,7 @@ public class SingleGameView extends View {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (enemyGameField.gameField[i][j] != 0) {
-					enemyShipNumber++;
+					gsu.enemyShipNumber++;
 				}
 			}
 

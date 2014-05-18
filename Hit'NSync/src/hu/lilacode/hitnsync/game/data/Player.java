@@ -1,4 +1,4 @@
-package hu.lilacode.hitnsync.game;
+package hu.lilacode.hitnsync.game.data;
 
 import android.content.Context;
 import android.content.ContextWrapper;

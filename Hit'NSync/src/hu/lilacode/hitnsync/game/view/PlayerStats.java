@@ -1,6 +1,6 @@
 package hu.lilacode.hitnsync.game.view;
 
-import hu.lilacode.hitnsync.game.Player;
+import hu.lilacode.hitnsync.game.data.Player;
 
 import java.util.ArrayList;
 import java.util.List;
