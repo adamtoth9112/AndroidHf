@@ -32,8 +32,6 @@ public class GameActivity extends Activity {
 		bluetooth.onCreate(this);
 		
 		gameMusic = new GameMusic();
-		
-		adview = new MyAdView(this, AdSize.BANNER);
 	}
 
 	@Override
@@ -41,6 +39,8 @@ public class GameActivity extends Activity {
 		super.onStart();
 		
 		bluetooth.onStart();
+		
+		adview = new MyAdView(this, AdSize.BANNER);
 	}
 	
 	@Override
