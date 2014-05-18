@@ -6,15 +6,11 @@ import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;
 import hu.lilacode.hitnsync.game.view.SingleGameView;
 import hu.lilacode.hitnsync.service.music.GameMusic;
-import hu.lilacode.hitnsync.service.network.MyAdView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
-
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -48,9 +44,6 @@ public class SingleGameActivity extends Activity {
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
 
 		setContentView(R.layout.activity_game_single);
-		
-
-		//adview = new MyAdView(this, AdSize.BANNER);
 	}
 
 	@Override
@@ -63,7 +56,6 @@ public class SingleGameActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		gameMusic.play();
-		//adview.loadAd(new AdRequest()); 
 	}
 
 	@Override

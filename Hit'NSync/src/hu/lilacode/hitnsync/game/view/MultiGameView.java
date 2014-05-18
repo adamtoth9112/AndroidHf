@@ -1,7 +1,6 @@
 package hu.lilacode.hitnsync.game.view;
 
 import hu.lilacode.hitnsync.R;
-import hu.lilacode.hitnsync.game.GameActivity;
 import hu.lilacode.hitnsync.game.field.EnemyGameField;
 import hu.lilacode.hitnsync.game.field.PlayerGameField;
 import hu.lilacode.hitnsync.game.ship.Ship;

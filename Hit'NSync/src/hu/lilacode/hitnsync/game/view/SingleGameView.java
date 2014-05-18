@@ -124,14 +124,9 @@ public class SingleGameView extends View {
 		userGameField.drawField(canvas);
 
 		enemyGameField.drawField(canvas);
-		// if (play && drawshot) {
-		// enemyGameField.drawShot(canvas);
-		// userGameField.drawShot(canvas);
-		// }
-		// if (drawshot) {
+
 		enemyGameField.drawShot(canvas);
 		userGameField.drawShot(canvas);
-		// }
 
 	}
 

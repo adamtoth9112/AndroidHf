@@ -16,7 +16,6 @@ import android.view.WindowManager;
 public class GameActivity extends Activity {
 	public static Bluetooth bluetooth;
 	private GameMusic gameMusic;
-	private MyAdView adview;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,6 @@ public class GameActivity extends Activity {
 		super.onStart();
 		
 		bluetooth.onStart();
-		
-		adview = new MyAdView(this, AdSize.BANNER);
 	}
 	
 	@Override
@@ -55,7 +52,6 @@ public class GameActivity extends Activity {
 		
 		bluetooth.onResume();
 		gameMusic.play();
-		adview.loadAd(new AdRequest()); 
 	}
 
 	@Override
