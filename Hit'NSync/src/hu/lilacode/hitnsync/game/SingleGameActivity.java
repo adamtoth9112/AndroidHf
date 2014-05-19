@@ -16,6 +16,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -26,16 +30,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class SingleGameActivity extends Activity {
+public class SingleGameActivity extends Activity implements SensorEventListener {
 	private GameMusic gameMusic;
 	private SharedPreferences prefs;
 	private String prefName = "gameState";
-	//private MyAdView adview;
+	// private MyAdView adview;
 	public static final String STATE = "state";
+	private SensorManager sensorManager;
+
+	private float coordX = 0.0f;
+	private float coordY = 0.0f;
+	private float coordZ = 0.0f;
+
+	public static boolean randomLoves = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -44,6 +56,12 @@ public class SingleGameActivity extends Activity {
 		prefs = getSharedPreferences(prefName, ContextWrapper.MODE_PRIVATE);
 
 		setContentView(R.layout.activity_game_single);
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+		sensorManager.registerListener(this,
+				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
+
 	}
 
 	@Override
@@ -76,9 +94,9 @@ public class SingleGameActivity extends Activity {
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-					saveGame();
-					dialogbox.dismiss();
-					finish();
+				saveGame();
+				dialogbox.dismiss();
+				finish();
 			}
 		});
 
@@ -86,9 +104,9 @@ public class SingleGameActivity extends Activity {
 		megse.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-					dialogbox.dismiss();
-					setPrefState(false);
-					finish();
+				dialogbox.dismiss();
+				setPrefState(false);
+				finish();
 			}
 		});
 
@@ -131,12 +149,67 @@ public class SingleGameActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void setPrefState(boolean hasSave) {
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putBoolean(SingleGameActivity.STATE, hasSave);
-		Log.d("'NSync","Jatek elmentve");
+		Log.d("'NSync", "Jatek elmentve");
 		editor.commit();
 	}
 
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+			float oldX;
+			float oldY;
+			float oldZ;
+			oldX = coordX;
+			oldY = coordY;
+			oldZ = coordZ;
+
+			coordX = event.values[0];
+			coordY = event.values[1];
+			coordZ = event.values[2];
+
+			if ((coordX - oldX) > 8.0f) {
+				randomLoves = true;
+			} else {
+				randomLoves = false;
+			}
+			if ((coordX - oldX) < -8.0f) {
+				randomLoves = true;
+			} else {
+				randomLoves = false;
+			}
+			if ((coordY - oldY) > 8.0f) {
+				randomLoves = true;
+			} else {
+				randomLoves = false;
+			}
+			if ((coordY - oldY) < -8.0f) {
+				randomLoves = true;
+			} else {
+				randomLoves = false;
+			}
+			if ((coordZ - oldZ) > 8.0f) {
+				randomLoves = true;
+			} else {
+				randomLoves = false;
+			}
+			if ((coordZ - oldZ) < -8.0f) {
+				randomLoves = true;
+			} else {
+				randomLoves = false;
+			}
+
+
+		}
+
+	}
 }

@@ -20,11 +20,12 @@ public class MyAdView {
 
 		RelativeLayout mainLayout = (RelativeLayout) activity
 				.findViewById(R.id.layout);
-		
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        mainLayout.addView(mAdView, params);
-        mAdView.loadAd(new AdRequest.Builder().build());
+
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.MATCH_PARENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+		mainLayout.addView(mAdView, params);
+		mAdView.loadAd(new AdRequest.Builder().build());
 	}
 
 }

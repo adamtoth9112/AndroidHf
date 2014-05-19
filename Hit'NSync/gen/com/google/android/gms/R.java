@@ -81,6 +81,7 @@ public final class R {
 		public static final int google_play_services_version = 0x7f080000;
 	}
 	public static final class string {
+		public static final int auth_client_availability_notification_title = 0x7f07001b;
 		public static final int auth_client_needs_enabling_title = 0x7f070015;
 		public static final int auth_client_needs_installation_title = 0x7f070016;
 		public static final int auth_client_needs_update_title = 0x7f070017;

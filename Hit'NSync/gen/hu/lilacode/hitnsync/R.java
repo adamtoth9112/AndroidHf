@@ -342,6 +342,7 @@ containing a value of this type.
         public static final int nsyncbyebyebye=0x7f040000;
     }
     public static final class string {
+<<<<<<< HEAD
         public static final int Credits=0x7f070022;
         public static final int MultiPlayer=0x7f07001e;
         public static final int Name=0x7f070025;
@@ -353,6 +354,19 @@ containing a value of this type.
         public static final int action_settings=0x7f070026;
         public static final int app_id=0x7f07001b;
         public static final int app_name=0x7f07001d;
+=======
+        public static final int Credits=0x7f070021;
+        public static final int MultiPlayer=0x7f07001d;
+        public static final int Name=0x7f070024;
+        public static final int Ok=0x7f070023;
+        public static final int Setting=0x7f07001f;
+        public static final int SinglePlayer=0x7f07001e;
+        public static final int Stats=0x7f070020;
+        public static final int TextStart=0x7f070022;
+        public static final int action_settings=0x7f070025;
+        public static final int app_name=0x7f07001c;
+        public static final int auth_client_availability_notification_title=0x7f07001b;
+>>>>>>> origin/master
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -376,10 +390,17 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f070014;
+<<<<<<< HEAD
         public static final int betoltsek=0x7f07003d;
         public static final int bt_not_enabled_leaving=0x7f07002f;
         public static final int button_scan=0x7f070039;
         public static final int cel=0x7f07002c;
+=======
+        public static final int betoltsek=0x7f07003c;
+        public static final int bt_not_enabled_leaving=0x7f07002e;
+        public static final int button_scan=0x7f070038;
+        public static final int cel=0x7f07002b;
+>>>>>>> origin/master
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -451,6 +472,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
+<<<<<<< HEAD
         public static final int csata=0x7f07002a;
         public static final int first=0x7f07001c;
         public static final int hajo_forgatas=0x7f070029;
@@ -478,6 +500,34 @@ containing a value of this type.
         public static final int title_not_connected=0x7f070032;
         public static final int title_other_devices=0x7f070038;
         public static final int title_paired_devices=0x7f070037;
+=======
+        public static final int csata=0x7f070029;
+        public static final int hajo_forgatas=0x7f070028;
+        public static final int hajo_lerakas=0x7f070027;
+        public static final int jatekmod=0x7f07002c;
+        public static final int kezdes=0x7f070026;
+        /**  Location client code resources (prefix with location_client) 
+         */
+        public static final int location_client_powered_by_google=0x7f07001a;
+        public static final int megse=0x7f07003a;
+        public static final int mentsek=0x7f07003b;
+        public static final int none_found=0x7f070035;
+        public static final int none_paired=0x7f070034;
+        /**  BluetoothChat 
+         */
+        public static final int not_connected=0x7f07002d;
+        public static final int ok=0x7f070039;
+        /**  DeviceListActivity 
+         */
+        public static final int scanning=0x7f070032;
+        public static final int select_device=0x7f070033;
+        public static final int talalat=0x7f07002a;
+        public static final int title_connected_to=0x7f070030;
+        public static final int title_connecting=0x7f07002f;
+        public static final int title_not_connected=0x7f070031;
+        public static final int title_other_devices=0x7f070037;
+        public static final int title_paired_devices=0x7f070036;
+>>>>>>> origin/master
     }
     public static final class style {
         /** 

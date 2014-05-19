@@ -19,6 +19,12 @@ public class GameSetUp implements Serializable {
 	public int enemyShipNumber;
 	public int aiTalalat;
 	public int userTalalat;
+	public int randomUserLoves;
+	public int randomAILoves;
+	public boolean userTizpont;
+	public boolean userOtvenpont;
+	public boolean aiTizpont;
+	public boolean aiOtvenpont;
 
 	public GameSetUp() {
 		aiShoot = 0;
@@ -30,6 +36,12 @@ public class GameSetUp implements Serializable {
 		enemyShipNumber = 0;
 		aiTalalat = 0;
 		userTalalat = 0;
+		randomUserLoves = 0;
+		randomAILoves = 0;
+		userTizpont = false;
+		userOtvenpont = false;
+		aiTizpont = false;
+		aiOtvenpont = false;
 	}
 
 	public void save() {
@@ -78,6 +90,12 @@ public class GameSetUp implements Serializable {
 			this.userShoot = gsu.userShoot;
 			this.userTotalShoot = gsu.userTotalShoot;
 			this.userTalalat = gsu.userTalalat;
+			this.randomAILoves = gsu.randomAILoves;
+			this.randomUserLoves = gsu.randomUserLoves;
+			this.userTizpont = gsu.userTizpont;
+			this.userOtvenpont = gsu.userOtvenpont;
+			this.aiTizpont = gsu.aiTizpont;
+			this.aiOtvenpont = gsu.aiOtvenpont;
 
 		} catch (Exception e) {
 			e.printStackTrace();
