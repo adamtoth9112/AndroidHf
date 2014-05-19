@@ -157,9 +157,11 @@ public class SingleGameView extends View {
 
 		enemyGameField.drawField(canvas);
 
-
 		drawUserField(canvas);
 		drawEnemyField(canvas);
+
+		drawRandomUserShoot(canvas);
+		drawRandomAIShoot(canvas);
 	}
 
 	private void drawBackGround(Canvas canvas) {
@@ -267,9 +269,7 @@ public class SingleGameView extends View {
 					float sy = Y * j + deltaY;
 					canvas.drawBitmap(shootShip5, sx, sy, null);
 				}
-				
-				
-				
+
 				if (enemyGameField.gameField[i][j] == 10) {
 					float sx = X * (i + 11) + deltaX;
 					float sy = Y * j + deltaY;
@@ -448,7 +448,17 @@ public class SingleGameView extends View {
 							invalidate();
 						}
 
-						AIShot();
+						if (gsu.userPoints >= 10 && gsu.userTizpont == false) {
+							gsu.randomUserLoves++;
+							gsu.userTizpont = true;
+						}
+
+						if (gsu.userPoints >= 50 && gsu.userOtvenpont == false) {
+							gsu.randomUserLoves++;
+							gsu.userOtvenpont = true;
+						}
+
+						AIShoot();
 						gsu.save();
 
 						if (gsu.userTalalat == gsu.enemyShipNumber) {
@@ -470,7 +480,7 @@ public class SingleGameView extends View {
 
 	}
 
-	void AIShot() {
+	void AIShoot() {
 		int x = 0;
 		int y = 0;
 		boolean lo = true;
@@ -479,7 +489,7 @@ public class SingleGameView extends View {
 
 		synchronized (this) {
 			try {
-				this.wait(1000);
+				this.wait(500);
 			} catch (InterruptedException e) {
 			}
 		}
@@ -542,7 +552,15 @@ public class SingleGameView extends View {
 				gsu.aiShoot = 0;
 				userGameField.gameField[x][y] = 25;
 			}
+			if (gsu.aiPoints >= 10 && gsu.aiTizpont == false) {
+				gsu.randomAILoves++;
+				gsu.aiTizpont = true;
+			}
 
+			if (gsu.aiPoints >= 50 && gsu.aiOtvenpont == false) {
+				gsu.randomAILoves++;
+				gsu.aiOtvenpont = true;
+			}
 			gsu.aiTalalat++;
 		}
 
@@ -602,6 +620,198 @@ public class SingleGameView extends View {
 			}
 
 		}
+	}
+
+	void userShoot() {
+		int x = 0;
+		int y = 0;
+		boolean lo = true;
+
+		playerTurn = false;
+
+		synchronized (this) {
+			try {
+				this.wait(250);
+			} catch (InterruptedException e) {
+			}
+		}
+
+		while (lo) {
+			x = rn.nextInt(10);
+			y = rn.nextInt(10);
+			if (enemyGameField.gameField[x][y] == 10
+					|| enemyGameField.gameField[x][y] == 11
+					|| enemyGameField.gameField[x][y] == 12
+					|| enemyGameField.gameField[x][y] == 22
+					|| enemyGameField.gameField[x][y] == 23
+					|| enemyGameField.gameField[x][y] == 24
+					|| enemyGameField.gameField[x][y] == 25) {
+				lo = true;
+			} else {
+				lo = false;
+			}
+		}
+
+		gsu.userShoot++;
+		gsu.userTotalShoot++;
+
+		if (enemyGameField.gameField[x][y] == 0) {
+			int min = 10;
+			int max = 13;
+			int rnn = min + (rn.nextInt(max - min));
+			enemyGameField.gameField[x][y] = rnn;
+			enemyGameField.gameField[x][y] = rnn;
+			if (gsu.userShoot == 5) {
+				gsu.userPoints = gsu.userPoints - 5;
+				gsu.userShoot = 0;
+			} else {
+				gsu.userPoints--;
+			}
+		}
+
+		if (enemyGameField.gameField[x][y] != 0
+				&& enemyGameField.gameField[x][y] != 10
+				&& enemyGameField.gameField[x][y] != 11
+				&& enemyGameField.gameField[x][y] != 12) {
+
+			if (enemyGameField.gameField[x][y] == 2) {
+				gsu.userPoints = gsu.userPoints + 20;
+				gsu.userShoot = 0;
+				enemyGameField.gameField[x][y] = 22;
+			}
+			if (enemyGameField.gameField[x][y] == 3) {
+				gsu.userPoints = gsu.userPoints + 16;
+				gsu.userShoot = 0;
+				enemyGameField.gameField[x][y] = 23;
+			}
+			if (enemyGameField.gameField[x][y] == 4) {
+				gsu.userPoints = gsu.userPoints + 14;
+				gsu.userShoot = 0;
+				enemyGameField.gameField[x][y] = 24;
+			}
+			if (enemyGameField.gameField[x][y] == 5) {
+				gsu.userPoints = gsu.userPoints + 12;
+				gsu.userShoot = 0;
+				enemyGameField.gameField[x][y] = 25;
+			}
+
+			gsu.userTalalat++;
+		}
+
+		playerTurn = true;
+		invalidate();
+	}
+
+	public void drawRandomUserShoot(Canvas canvas) {
+		if (gsu.randomUserLoves > 0 && SingleGameActivity.randomLoves == true) {
+			for (int i = 0; i < 3; i++) {
+				userShoot();
+			}
+			float X = (float) (getWidth() * 0.47f / 10.0);
+			float Y = (float) (getHeight() * 0.8f / 10.0);
+			float deltaX = X / 4;
+			float deltaY = Y / 4;
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					if (enemyGameField.gameField[i][j] == 22) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip2, sx, sy, null);
+					}
+					if (enemyGameField.gameField[i][j] == 23) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip3, sx, sy, null);
+					}
+					if (enemyGameField.gameField[i][j] == 24) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip4, sx, sy, null);
+					}
+					if (enemyGameField.gameField[i][j] == 25) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip5, sx, sy, null);
+					}
+
+					if (enemyGameField.gameField[i][j] == 10) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(splash1, sx, sy, null);
+					}
+					if (enemyGameField.gameField[i][j] == 11) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(splash2, sx, sy, null);
+					}
+					if (enemyGameField.gameField[i][j] == 12) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(splash3, sx, sy, null);
+					}
+				}
+			}
+			gsu.randomUserLoves--;
+		}
+		invalidate();
+
+	}
+
+	public void drawRandomAIShoot(Canvas canvas) {
+		int rnn;
+		rnn = rn.nextInt(7);
+		if (gsu.randomAILoves > 0 && ((rnn == 1) || (rnn == 5))) {
+			System.out.print("ELEGEG RANDOM");
+			for (int i = 0; i < 3; i++) {
+				AIShoot();
+			}
+			float X = (float) (getWidth() * 0.47f / 10.0);
+			float Y = (float) (getHeight() * 0.8f / 10.0);
+			float deltaX = X / 4;
+			float deltaY = Y / 4;
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					if (userGameField.gameField[i][j] == 22) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip2, sx, sy, null);
+					}
+					if (userGameField.gameField[i][j] == 23) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip3, sx, sy, null);
+					}
+					if (userGameField.gameField[i][j] == 24) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip4, sx, sy, null);
+					}
+					if (userGameField.gameField[i][j] == 25) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(shootShip5, sx, sy, null);
+					}
+
+					if (userGameField.gameField[i][j] == 10) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(splash1, sx, sy, null);
+					}
+					if (userGameField.gameField[i][j] == 11) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(splash2, sx, sy, null);
+					}
+					if (userGameField.gameField[i][j] == 12) {
+						float sx = X * (i + 11) + deltaX;
+						float sy = Y * j + deltaY;
+						canvas.drawBitmap(splash3, sx, sy, null);
+					}
+				}
+			}
+			gsu.randomAILoves--;
+		}
+		invalidate();
 	}
 
 }

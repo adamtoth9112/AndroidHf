@@ -1,12 +1,8 @@
 package hu.lilacode.hitnsync.game;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-
 import hu.lilacode.hitnsync.R;
 import hu.lilacode.hitnsync.service.music.GameMusic;
 import hu.lilacode.hitnsync.service.network.Bluetooth;
-import hu.lilacode.hitnsync.service.network.MyAdView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
