@@ -79,7 +79,14 @@ public class SingleGameActivity extends Activity implements SensorEventListener 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && !SingleGameView.start) {
-			doDialog();
+			if (SingleGameView.finish == false){
+				doDialog();
+			}
+			else{
+				finish();
+				SingleGameView.finish = false;
+			}
+			
 		}
 		return false;
 	}

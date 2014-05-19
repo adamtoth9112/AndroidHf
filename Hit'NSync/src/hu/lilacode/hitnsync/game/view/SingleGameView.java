@@ -46,6 +46,7 @@ public class SingleGameView extends View {
 	byte[] kar;
 	private Context context;
 	GameSetUp gsu;
+	public static boolean finish = false;
 
 	protected Bitmap splash1;
 	protected Bitmap splash2;
@@ -464,7 +465,7 @@ public class SingleGameView extends View {
 						AIShoot();
 						gsu.save();
 
-						if (gsu.userTalalat == 1) {// gsu.enemyShipNumber
+						if (gsu.userTalalat == gsu.enemyShipNumber) {
 							play = false;
 							player.shoot = gsu.userTotalShoot;
 							userWin();
@@ -847,7 +848,7 @@ public class SingleGameView extends View {
 			@Override
 			public void onClick(View v) {
 				dialogbox.dismiss();
-				
+				finish = true;
 			}
 		});
 
@@ -883,7 +884,7 @@ public class SingleGameView extends View {
 			@Override
 			public void onClick(View v) {
 				dialogbox.dismiss();
-				
+				finish = true;
 
 			}
 		});
