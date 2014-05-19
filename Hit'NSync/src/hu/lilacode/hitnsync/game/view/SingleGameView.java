@@ -464,7 +464,7 @@ public class SingleGameView extends View {
 						AIShoot();
 						gsu.save();
 
-						if (gsu.userTalalat == 1) {//gsu.enemyShipNumber
+						if (gsu.userTalalat == 1) {// gsu.enemyShipNumber
 							play = false;
 							player.shoot = gsu.userTotalShoot;
 							userWin();
@@ -817,32 +817,37 @@ public class SingleGameView extends View {
 		}
 		invalidate();
 	}
-	
+
 	public void userWin() {
+		CharSequence gy = "JÁTÉKOS";
+		Integer useri = gsu.userPoints;
+		String users = useri.toString();
+		CharSequence gyp = users;
+		CharSequence v = "AI";
+		Integer aii = gsu.aiPoints;
+		String ais = aii.toString();
+		CharSequence vp = ais;
+
 		final Dialog dialogbox = new Dialog(context, R.style.FullHeightDialog);
 		dialogbox.setContentView(R.layout.game_over_dialog);
 		dialogbox.setCancelable(true);
-
-		EditText gyoztes = (EditText) findViewById(R.id.gyoztes);
-		// gyoztes.setText(JÁTÉKOS);
-
-		EditText etgyoztespont = (EditText) findViewById(R.id.gyoztespont);
-		Integer i = gsu.userPoints;
-		String p = i.toString();
-		etgyoztespont.setText(p);
-
-		EditText vesztes = (EditText) findViewById(R.id.vesztes);
-		// vesztes.setText("AI");
-
-		EditText vesztespont = (EditText) findViewById(R.id.vesztespont);
-		// vesztespont.setText(gsu.aiPoints);
+		TextView gyoztes = (TextView) dialogbox.findViewById(R.id.gyoztes);
+		gyoztes.setText(gy);
+		TextView gyoztespont = (TextView) dialogbox
+				.findViewById(R.id.gyoztespont);
+		gyoztespont.setText(gyp);
+		TextView vesztes = (TextView) dialogbox.findViewById(R.id.vesztes);
+		vesztes.setText(v);
+		TextView vesztespont = (TextView) dialogbox
+				.findViewById(R.id.vesztespont);
+		vesztespont.setText(vp);
 
 		Button ok = (Button) dialogbox.findViewById(R.id.Vege);
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				;
 				dialogbox.dismiss();
+				
 			}
 		});
 
@@ -850,28 +855,35 @@ public class SingleGameView extends View {
 	}
 
 	public void AIWin() {
+		CharSequence gy = "AI";
+		Integer useri = gsu.aiPoints;
+		String users = useri.toString();
+		CharSequence gyp = users;
+		CharSequence v = "JÁTKOS";
+		Integer aii = gsu.userPoints;
+		String ais = aii.toString();
+		CharSequence vp = ais;
+
 		final Dialog dialogbox = new Dialog(context, R.style.FullHeightDialog);
 		dialogbox.setContentView(R.layout.game_over_dialog);
 		dialogbox.setCancelable(true);
-
-		TextView gyoztes = (TextView) findViewById(R.id.gyoztes);
-		gyoztes.setText("AI");
-
-		TextView gyoztespont = (TextView) findViewById(R.id.gyoztespont);
-		gyoztespont.setText(gsu.aiPoints);
-
-		TextView vesztes = (TextView) findViewById(R.id.vesztes);
-		vesztes.setText("JÁTÉKOS");
-
-		TextView vesztespont = (TextView) findViewById(R.id.vesztespont);
-		vesztespont.setText(gsu.userPoints);
+		TextView gyoztes = (TextView) dialogbox.findViewById(R.id.gyoztes);
+		gyoztes.setText(gy);
+		TextView gyoztespont = (TextView) dialogbox
+				.findViewById(R.id.gyoztespont);
+		gyoztespont.setText(gyp);
+		TextView vesztes = (TextView) dialogbox.findViewById(R.id.vesztes);
+		vesztes.setText(v);
+		TextView vesztespont = (TextView) dialogbox
+				.findViewById(R.id.vesztespont);
+		vesztespont.setText(vp);
 
 		Button ok = (Button) dialogbox.findViewById(R.id.Vege);
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				;
 				dialogbox.dismiss();
+				
 
 			}
 		});
