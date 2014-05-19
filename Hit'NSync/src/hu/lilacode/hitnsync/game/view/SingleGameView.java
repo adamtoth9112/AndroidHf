@@ -12,6 +12,7 @@ import hu.lilacode.hitnsync.game.ship.Ship.Direction;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
@@ -24,6 +25,9 @@ import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class SingleGameView extends View {
 	private PlayerGameField userGameField;
@@ -460,14 +464,15 @@ public class SingleGameView extends View {
 						AIShoot();
 						gsu.save();
 
-						if (gsu.userTalalat == gsu.enemyShipNumber) {
+						if (gsu.userTalalat == 1) {//gsu.enemyShipNumber
 							play = false;
 							player.shoot = gsu.userTotalShoot;
+							userWin();
 
 						}
 						if (gsu.aiTalalat == 16) {
 							play = false;
-
+							AIWin();
 						}
 					}
 
@@ -811,6 +816,67 @@ public class SingleGameView extends View {
 			gsu.randomAILoves--;
 		}
 		invalidate();
+	}
+	
+	public void userWin() {
+		final Dialog dialogbox = new Dialog(context, R.style.FullHeightDialog);
+		dialogbox.setContentView(R.layout.game_over_dialog);
+		dialogbox.setCancelable(true);
+
+		EditText gyoztes = (EditText) findViewById(R.id.gyoztes);
+		// gyoztes.setText(JÁTÉKOS);
+
+		EditText etgyoztespont = (EditText) findViewById(R.id.gyoztespont);
+		Integer i = gsu.userPoints;
+		String p = i.toString();
+		etgyoztespont.setText(p);
+
+		EditText vesztes = (EditText) findViewById(R.id.vesztes);
+		// vesztes.setText("AI");
+
+		EditText vesztespont = (EditText) findViewById(R.id.vesztespont);
+		// vesztespont.setText(gsu.aiPoints);
+
+		Button ok = (Button) dialogbox.findViewById(R.id.Vege);
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				;
+				dialogbox.dismiss();
+			}
+		});
+
+		dialogbox.show();
+	}
+
+	public void AIWin() {
+		final Dialog dialogbox = new Dialog(context, R.style.FullHeightDialog);
+		dialogbox.setContentView(R.layout.game_over_dialog);
+		dialogbox.setCancelable(true);
+
+		TextView gyoztes = (TextView) findViewById(R.id.gyoztes);
+		gyoztes.setText("AI");
+
+		TextView gyoztespont = (TextView) findViewById(R.id.gyoztespont);
+		gyoztespont.setText(gsu.aiPoints);
+
+		TextView vesztes = (TextView) findViewById(R.id.vesztes);
+		vesztes.setText("JÁTÉKOS");
+
+		TextView vesztespont = (TextView) findViewById(R.id.vesztespont);
+		vesztespont.setText(gsu.userPoints);
+
+		Button ok = (Button) dialogbox.findViewById(R.id.Vege);
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				;
+				dialogbox.dismiss();
+
+			}
+		});
+
+		dialogbox.show();
 	}
 
 }

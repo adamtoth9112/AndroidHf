@@ -37,6 +37,10 @@
     <string name="ok">OK</string>
     <string name="megse">Mégse</string>
     <string name="mentsek">Elmentsem a játékállást?</string>
+    <string name="gameover">A játéknak vége</string>
     <string name="betoltsek">Betöltsem a mentett játékállást?</string>
+    <string name="gyoztes">Győztes:</string>
+    <string name="vesztes">Vesztes:</string>
+    <string name="pontszam">Pontszáma:</string>
 
 </resources>

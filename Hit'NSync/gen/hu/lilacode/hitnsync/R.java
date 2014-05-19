@@ -239,64 +239,67 @@ containing a value of this type.
         public static final int stats=0x7f02002d;
     }
     public static final class id {
-        public static final int NameField=0x7f06001d;
-        public static final int TableRow01=0x7f060048;
-        public static final int TableRow02=0x7f060043;
-        public static final int TableRow03=0x7f06003e;
-        public static final int TableRow04=0x7f060039;
-        public static final int TableRow05=0x7f060034;
-        public static final int TableRow06=0x7f06002f;
-        public static final int TableRow07=0x7f06002a;
-        public static final int TableRow08=0x7f060025;
-        public static final int TableRow09=0x7f060020;
-        public static final int TextView01=0x7f06004a;
-        public static final int TextView02=0x7f060049;
-        public static final int TextView03=0x7f06004c;
-        public static final int TextView04=0x7f06004b;
-        public static final int TextView05=0x7f060045;
-        public static final int TextView06=0x7f060044;
-        public static final int TextView07=0x7f060047;
-        public static final int TextView08=0x7f060046;
-        public static final int TextView09=0x7f060040;
-        public static final int TextView10=0x7f06003f;
-        public static final int TextView11=0x7f060042;
-        public static final int TextView12=0x7f060041;
-        public static final int TextView13=0x7f06003b;
-        public static final int TextView14=0x7f06003a;
-        public static final int TextView15=0x7f06003d;
-        public static final int TextView16=0x7f06003c;
-        public static final int TextView17=0x7f060036;
-        public static final int TextView18=0x7f060035;
-        public static final int TextView19=0x7f060038;
-        public static final int TextView20=0x7f060037;
-        public static final int TextView21=0x7f060031;
-        public static final int TextView22=0x7f060030;
-        public static final int TextView23=0x7f060033;
-        public static final int TextView24=0x7f060032;
-        public static final int TextView25=0x7f06002c;
-        public static final int TextView26=0x7f06002b;
-        public static final int TextView27=0x7f06002e;
-        public static final int TextView28=0x7f06002d;
-        public static final int TextView29=0x7f060027;
-        public static final int TextView30=0x7f060026;
-        public static final int TextView31=0x7f060029;
-        public static final int TextView32=0x7f060028;
-        public static final int TextView33=0x7f060022;
-        public static final int TextView34=0x7f060021;
-        public static final int TextView35=0x7f060024;
-        public static final int TextView36=0x7f060023;
-        public static final int action_settings=0x7f06004e;
-        public static final int btnAdd=0x7f06001e;
-        public static final int btnCredits=0x7f06001b;
-        public static final int btnMulty=0x7f060017;
-        public static final int btnOption=0x7f060019;
-        public static final int btnSingle=0x7f060018;
-        public static final int btnStats=0x7f06001a;
+        public static final int NameField=0x7f060023;
+        public static final int TableRow01=0x7f06004e;
+        public static final int TableRow02=0x7f060049;
+        public static final int TableRow03=0x7f060044;
+        public static final int TableRow04=0x7f06003f;
+        public static final int TableRow05=0x7f06003a;
+        public static final int TableRow06=0x7f060035;
+        public static final int TableRow07=0x7f060030;
+        public static final int TableRow08=0x7f06002b;
+        public static final int TableRow09=0x7f060026;
+        public static final int TextView01=0x7f060050;
+        public static final int TextView02=0x7f06004f;
+        public static final int TextView03=0x7f060052;
+        public static final int TextView04=0x7f060051;
+        public static final int TextView05=0x7f06004b;
+        public static final int TextView06=0x7f06004a;
+        public static final int TextView07=0x7f06004d;
+        public static final int TextView08=0x7f06004c;
+        public static final int TextView09=0x7f060046;
+        public static final int TextView10=0x7f060045;
+        public static final int TextView11=0x7f060048;
+        public static final int TextView12=0x7f060047;
+        public static final int TextView13=0x7f060041;
+        public static final int TextView14=0x7f060040;
+        public static final int TextView15=0x7f060043;
+        public static final int TextView16=0x7f060042;
+        public static final int TextView17=0x7f06003c;
+        public static final int TextView18=0x7f06003b;
+        public static final int TextView19=0x7f06003e;
+        public static final int TextView20=0x7f06003d;
+        public static final int TextView21=0x7f060037;
+        public static final int TextView22=0x7f060036;
+        public static final int TextView23=0x7f060039;
+        public static final int TextView24=0x7f060038;
+        public static final int TextView25=0x7f060032;
+        public static final int TextView26=0x7f060031;
+        public static final int TextView27=0x7f060034;
+        public static final int TextView28=0x7f060033;
+        public static final int TextView29=0x7f06002d;
+        public static final int TextView30=0x7f06002c;
+        public static final int TextView31=0x7f06002f;
+        public static final int TextView32=0x7f06002e;
+        public static final int TextView33=0x7f060028;
+        public static final int TextView34=0x7f060027;
+        public static final int TextView35=0x7f06002a;
+        public static final int TextView36=0x7f060029;
+        public static final int Vege=0x7f06001c;
+        public static final int action_settings=0x7f060054;
+        public static final int btnAdd=0x7f060024;
+        public static final int btnCredits=0x7f060021;
+        public static final int btnMulty=0x7f06001d;
+        public static final int btnOption=0x7f06001f;
+        public static final int btnSingle=0x7f06001e;
+        public static final int btnStats=0x7f060020;
         public static final int button_scan=0x7f060010;
         public static final int dialogtext=0x7f060013;
+        public static final int gyoztes=0x7f060017;
+        public static final int gyoztespont=0x7f060018;
         public static final int hybrid=0x7f060004;
         public static final int kulsokeret=0x7f060011;
-        public static final int layout=0x7f06001c;
+        public static final int layout=0x7f060022;
         public static final int mExitDialogDesc=0x7f060012;
         public static final int mExitDialogTitleBorder=0x7f060014;
         public static final int megse=0x7f060015;
@@ -306,8 +309,8 @@ containing a value of this type.
         public static final int ok=0x7f060016;
         public static final int paired_devices=0x7f06000d;
         public static final int satellite=0x7f060002;
-        public static final int tableRow1=0x7f06001f;
-        public static final int tableRow2=0x7f06004d;
+        public static final int tableRow1=0x7f060025;
+        public static final int tableRow2=0x7f060053;
         public static final int terrain=0x7f060003;
         public static final int textView1=0x7f060005;
         public static final int textView2=0x7f060006;
@@ -316,8 +319,11 @@ containing a value of this type.
         public static final int textView5=0x7f060009;
         public static final int textView6=0x7f06000a;
         public static final int textView7=0x7f06000b;
+        public static final int textView8=0x7f06001a;
         public static final int title_new_devices=0x7f06000e;
         public static final int title_paired_devices=0x7f06000c;
+        public static final int vesztes=0x7f060019;
+        public static final int vesztespont=0x7f06001b;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
@@ -330,10 +336,11 @@ containing a value of this type.
         public static final int device_list=0x7f030004;
         public static final int device_name=0x7f030005;
         public static final int dialog_box_layout=0x7f030006;
-        public static final int menu=0x7f030007;
-        public static final int message=0x7f030008;
-        public static final int option=0x7f030009;
-        public static final int stats=0x7f03000a;
+        public static final int game_over_dialog=0x7f030007;
+        public static final int menu=0x7f030008;
+        public static final int message=0x7f030009;
+        public static final int option=0x7f03000a;
+        public static final int stats=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -342,31 +349,18 @@ containing a value of this type.
         public static final int nsyncbyebyebye=0x7f040000;
     }
     public static final class string {
-<<<<<<< HEAD
-        public static final int Credits=0x7f070022;
-        public static final int MultiPlayer=0x7f07001e;
-        public static final int Name=0x7f070025;
-        public static final int Ok=0x7f070024;
-        public static final int Setting=0x7f070020;
-        public static final int SinglePlayer=0x7f07001f;
-        public static final int Stats=0x7f070021;
-        public static final int TextStart=0x7f070023;
-        public static final int action_settings=0x7f070026;
-        public static final int app_id=0x7f07001b;
-        public static final int app_name=0x7f07001d;
-=======
-        public static final int Credits=0x7f070021;
-        public static final int MultiPlayer=0x7f07001d;
-        public static final int Name=0x7f070024;
-        public static final int Ok=0x7f070023;
-        public static final int Setting=0x7f07001f;
-        public static final int SinglePlayer=0x7f07001e;
-        public static final int Stats=0x7f070020;
-        public static final int TextStart=0x7f070022;
-        public static final int action_settings=0x7f070025;
-        public static final int app_name=0x7f07001c;
+        public static final int Credits=0x7f070023;
+        public static final int MultiPlayer=0x7f07001f;
+        public static final int Name=0x7f070026;
+        public static final int Ok=0x7f070025;
+        public static final int Setting=0x7f070021;
+        public static final int SinglePlayer=0x7f070020;
+        public static final int Stats=0x7f070022;
+        public static final int TextStart=0x7f070024;
+        public static final int action_settings=0x7f070027;
+        public static final int app_id=0x7f07001c;
+        public static final int app_name=0x7f07001e;
         public static final int auth_client_availability_notification_title=0x7f07001b;
->>>>>>> origin/master
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -390,17 +384,10 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f070014;
-<<<<<<< HEAD
-        public static final int betoltsek=0x7f07003d;
-        public static final int bt_not_enabled_leaving=0x7f07002f;
-        public static final int button_scan=0x7f070039;
-        public static final int cel=0x7f07002c;
-=======
-        public static final int betoltsek=0x7f07003c;
-        public static final int bt_not_enabled_leaving=0x7f07002e;
-        public static final int button_scan=0x7f070038;
-        public static final int cel=0x7f07002b;
->>>>>>> origin/master
+        public static final int betoltsek=0x7f07003f;
+        public static final int bt_not_enabled_leaving=0x7f070030;
+        public static final int button_scan=0x7f07003a;
+        public static final int cel=0x7f07002d;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -472,62 +459,37 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-<<<<<<< HEAD
-        public static final int csata=0x7f07002a;
-        public static final int first=0x7f07001c;
-        public static final int hajo_forgatas=0x7f070029;
-        public static final int hajo_lerakas=0x7f070028;
-        public static final int jatekmod=0x7f07002d;
-        public static final int kezdes=0x7f070027;
+        public static final int csata=0x7f07002b;
+        public static final int first=0x7f07001d;
+        public static final int gameover=0x7f07003e;
+        public static final int gyoztes=0x7f070040;
+        public static final int hajo_forgatas=0x7f07002a;
+        public static final int hajo_lerakas=0x7f070029;
+        public static final int jatekmod=0x7f07002e;
+        public static final int kezdes=0x7f070028;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f07001a;
-        public static final int megse=0x7f07003b;
-        public static final int mentsek=0x7f07003c;
-        public static final int none_found=0x7f070036;
-        public static final int none_paired=0x7f070035;
+        public static final int megse=0x7f07003c;
+        public static final int mentsek=0x7f07003d;
+        public static final int none_found=0x7f070037;
+        public static final int none_paired=0x7f070036;
         /**  BluetoothChat 
          */
-        public static final int not_connected=0x7f07002e;
-        public static final int ok=0x7f07003a;
+        public static final int not_connected=0x7f07002f;
+        public static final int ok=0x7f07003b;
+        public static final int pontszam=0x7f070042;
         /**  DeviceListActivity 
          */
-        public static final int scanning=0x7f070033;
-        public static final int select_device=0x7f070034;
-        public static final int talalat=0x7f07002b;
-        public static final int title_connected_to=0x7f070031;
-        public static final int title_connecting=0x7f070030;
-        public static final int title_not_connected=0x7f070032;
-        public static final int title_other_devices=0x7f070038;
-        public static final int title_paired_devices=0x7f070037;
-=======
-        public static final int csata=0x7f070029;
-        public static final int hajo_forgatas=0x7f070028;
-        public static final int hajo_lerakas=0x7f070027;
-        public static final int jatekmod=0x7f07002c;
-        public static final int kezdes=0x7f070026;
-        /**  Location client code resources (prefix with location_client) 
-         */
-        public static final int location_client_powered_by_google=0x7f07001a;
-        public static final int megse=0x7f07003a;
-        public static final int mentsek=0x7f07003b;
-        public static final int none_found=0x7f070035;
-        public static final int none_paired=0x7f070034;
-        /**  BluetoothChat 
-         */
-        public static final int not_connected=0x7f07002d;
-        public static final int ok=0x7f070039;
-        /**  DeviceListActivity 
-         */
-        public static final int scanning=0x7f070032;
-        public static final int select_device=0x7f070033;
-        public static final int talalat=0x7f07002a;
-        public static final int title_connected_to=0x7f070030;
-        public static final int title_connecting=0x7f07002f;
-        public static final int title_not_connected=0x7f070031;
-        public static final int title_other_devices=0x7f070037;
-        public static final int title_paired_devices=0x7f070036;
->>>>>>> origin/master
+        public static final int scanning=0x7f070034;
+        public static final int select_device=0x7f070035;
+        public static final int talalat=0x7f07002c;
+        public static final int title_connected_to=0x7f070032;
+        public static final int title_connecting=0x7f070031;
+        public static final int title_not_connected=0x7f070033;
+        public static final int title_other_devices=0x7f070039;
+        public static final int title_paired_devices=0x7f070038;
+        public static final int vesztes=0x7f070041;
     }
     public static final class style {
         /** 
