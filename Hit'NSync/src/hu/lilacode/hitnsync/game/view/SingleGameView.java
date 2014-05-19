@@ -154,7 +154,6 @@ public class SingleGameView extends View {
 		}
 
 		userGameField.drawField(canvas);
-
 		enemyGameField.drawField(canvas);
 
 		drawUserField(canvas);
@@ -772,38 +771,38 @@ public class SingleGameView extends View {
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < 10; j++) {
 					if (userGameField.gameField[i][j] == 22) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(shootShip2, sx, sy, null);
 					}
 					if (userGameField.gameField[i][j] == 23) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(shootShip3, sx, sy, null);
 					}
 					if (userGameField.gameField[i][j] == 24) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(shootShip4, sx, sy, null);
 					}
 					if (userGameField.gameField[i][j] == 25) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(shootShip5, sx, sy, null);
 					}
 
 					if (userGameField.gameField[i][j] == 10) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(splash1, sx, sy, null);
 					}
 					if (userGameField.gameField[i][j] == 11) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(splash2, sx, sy, null);
 					}
 					if (userGameField.gameField[i][j] == 12) {
-						float sx = X * (i + 11) + deltaX;
+						float sx = X * (i) + deltaX;
 						float sy = Y * j + deltaY;
 						canvas.drawBitmap(splash3, sx, sy, null);
 					}
